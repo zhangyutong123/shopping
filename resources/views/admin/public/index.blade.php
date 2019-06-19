@@ -137,7 +137,7 @@
                         </ul>
                     </li>
 
-                    <li>
+                    <li class="active">
                         <a href="#"><i class="icon-google-plus"></i> 分类管理</a>
                         <ul>
                             <li><a href="/admin/cates">分类列表</a></li>
@@ -145,7 +145,7 @@
                         </ul>
                     </li>
 
-                    <li>
+                    <li class="active">
                         <a href="#"><i class="icon-th"></i> 商品管理</a>
                         <ul>
                             <li><a href="/admin/goods">商品列表</a></li>
