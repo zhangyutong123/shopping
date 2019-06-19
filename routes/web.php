@@ -32,6 +32,12 @@ Route::group(['prefix'=>'admin','middleware'=>['admin_login']], function(){
 	Route::get('index','Admin\IndexController@index');
 	// 后台 用户模块
 	Route::resource('users','Admin\UsersController');
+	// 后台 管理员
+	Route::resource('adminuser','Admin\AdminuserController');
+	// 后台  角色
+	Route::resource('roles','Admin\RolesController');
+	// 后台 权限
+	Route::resource('nodes','Admin\NodesController');
 	// 后台 轮播模块
 	Route::resource('banners','Admin\BannersController');
 	// 后台 轮播状态
@@ -61,6 +67,3 @@ Route::group((['prefix'=>'home']),function(){
 	Route::get('index/index','Home\IndexController@index');
 	
 });
-
-
-
