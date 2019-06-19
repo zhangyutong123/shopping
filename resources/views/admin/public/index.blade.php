@@ -114,6 +114,38 @@
                     </li>
 
                     <li class="active">
+                        <a href="#"><i class="icon-google-plus"></i> 分类管理</a>
+                        <ul>
+                            <li><a href="/cates">分类列表</a></li>
+                            <li><a href="/cates/create">分类添加</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-th"></i> 商品管理</a>
+                        <ul>
+                            <li><a href="/goods">商品列表</a></li>
+                            <li><a href="/goods/create">商品添加</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-picture"></i> 特价商品管理</a>
+                        <ul>
+                            <li><a href="/goods_cheap">特价商品列表</a></li>
+                            <li><a href="/goods_cheap/create">特价商品添加</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-list"></i> 友情链接管理</a>
+                        <ul>
+                            <li><a href="/links">友情链接列表</a></li>
+                            <li><a href="/links/create">友情链接添加</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
                         <a href="#"><i class="icon-pictures"></i> 轮播图管理</a>
                         <ul>
                             <li><a href="/admin/banners">轮播图列表</a></li>
