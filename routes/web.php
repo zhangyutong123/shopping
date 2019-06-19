@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 // 后台 登录
 Route::get('admin','Admin\LoginController@login')->name('admin_login');
+// 后台 执行登录
 Route::post('admin/dologin','Admin\LoginController@dologin');
 // 后台 退出
 Route::get('admin/logout','Admin\LoginController@logout');
@@ -53,7 +54,7 @@ Route::get('/','Home\IndexController@index');
 // 前台路由
 Route::group((['prefix'=>'home']),function(){
 
-	// 前台登录 路由
+	// 前台 登录 
 	Route::get('login/login','Home\LoginController@login');
 	Route::post('login/dologin','Home\LoginController@dologin');
 	// 前台 退出
@@ -62,7 +63,6 @@ Route::group((['prefix'=>'home']),function(){
 	Route::get('register/index','Home\RegisterController@index');
 	// 前台 执行 注册
 	Route::post('register/store','Home\RegisterController@store');
-
 	// 前台 首页
 	Route::get('index/index','Home\IndexController@index');
 	
