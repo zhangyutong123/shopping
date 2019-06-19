@@ -66,7 +66,7 @@
             
             	<!-- User Photo -->
             	<div id="mws-user-photo">
-                	<img src="/admins/example/profile.jpg" alt="User Photo">
+                	<img src="/uploads//{{ session('admin_userinfo')->profile }}" alt="User Photo">
                 </div>
                 
                 <!-- Username and Functions -->
@@ -104,12 +104,36 @@
             <!-- Main Navigation -->
             <div id="mws-navigation">
                 <ul>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-user"></i> 管理员</a>
+                        <ul>
+                            <li><a href="/admin/adminuser">管理员列表</a></li>
+                            <li><a href="/admin/adminuser/create">管理员添加</a></li>
+                        </ul>
+                    </li>
                     
                     <li class="active">
                         <a href="#"><i class="icon-users"></i> 用户管理</a>
                         <ul>
                             <li><a href="/admin/users">用户列表</a></li>
                             <li><a href="/admin/users/create">用户添加</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-warning-sign"></i> 角色管理</a>
+                        <ul>
+                            <li><a href="/admin/roles">角色列表</a></li>
+                            <li><a href="/admin/roles/create">角色添加</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-key-2"></i>权限管理</a>
+                        <ul>
+                            <li><a href="/admin/nodes">权限列表</a></li>
+                            <li><a href="/admin/nodes/create">权限添加</a></li>
                         </ul>
                     </li>
 
