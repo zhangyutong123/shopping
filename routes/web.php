@@ -47,7 +47,17 @@ Route::group(['prefix'=>'admin','middleware'=>['admin_login']], function(){
 	Route::resource('announce','Admin\AnnounceController');
 	// 后台 推荐位模块
 	Route::resource('pushs','Admin\PushsController');
+
+	// 后台 分类 
+	Route::resource('cates','Admin\CatesController');
+	//商品路由
+	Route::resource('goods','Admin\GoodsController');
+	//特价商品路由
+	Route::resource('goods_cheap','Admin\Goods_cheapController');
+	//友情链接路由
+	Route::resource('links','Admin\LinksController');
 });
+
 
 Route::get('/','Home\IndexController@index');
 
