@@ -22,6 +22,7 @@ class IndexController extends Controller
         // 获取公告
         $announces_data = Announces::get();
 
+
         // 显示模板
         return view('home.index.index',['banners_data'=>$banners_data,'announces_data'=>$announces_data]);
     }

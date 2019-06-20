@@ -55,6 +55,15 @@ Route::group(['prefix'=>'admin','middleware'=>['admin_login']], function(){
 	Route::resource('goods_cheap','Admin\Goods_cheapController');
 	//友情链接路由
 	Route::resource('links','Admin\LinksController');
+
+	//后台订单路由
+	Route::resource('orders','Admin\OrdersController');
+	//后台广告路由
+	Route::resource('advs','Admin\AdvsController');
+	//后台地址路由
+	Route::resource('address','Admin\AddressController');
+	//后台评价路由
+	Route::resource('replys','Admin\ReplysController');
 });
 
 
@@ -80,14 +89,3 @@ Route::group((['prefix'=>'home']),function(){
 
 
 
-//后台订单路由
-Route::resource('admin/orders','Admin\OrdersController');
-
-//后台广告路由
-Route::resource('admin/advs','Admin\AdvsController');
-
-//后台地址路由
-Route::resource('admin/address','Admin\AddressController');
-
-//后台评价路由
-Route::resource('admin/replys','Admin\ReplysController');
