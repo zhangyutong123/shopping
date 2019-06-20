@@ -47,7 +47,6 @@ Route::group(['prefix'=>'admin','middleware'=>['admin_login']], function(){
 	Route::resource('announce','Admin\AnnounceController');
 	// 后台 推荐位模块
 	Route::resource('pushs','Admin\PushsController');
-
 	// 后台 分类 
 	Route::resource('cates','Admin\CatesController');
 	//商品路由
