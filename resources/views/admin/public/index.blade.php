@@ -191,6 +191,29 @@
                             <li><a href="/admin/pushs">推荐位列表</a></li>
                         </ul>
                     </li>
+
+
+                     <li class="active">
+                        <a href="#"><i class="icon-users"></i> 订单管理</a>
+                        <ul>
+                            <li><a href="/admin/orders">订单列表</a></li>
+                        </ul>
+                    </li>
+                    
+                     <li class="active">
+                        <a href="#"><i class="icon-users"></i>广告管理</a>
+                        <ul>
+                            <li><a href="/admin/advs">广告列表</a></li>
+                            <li><a href="/admin/advs/create">广告添加</a></li>
+                        </ul>
+                    </li>
+               
+                     <li class="active">
+                        <a href="#"><i class="icon-users"></i>评论管理</a>
+                        <ul>
+                            <li><a href="/admin/replys">评论列表</a></li> 
+                        </ul>
+                    </li>
                     
                 </ul>
             </div>

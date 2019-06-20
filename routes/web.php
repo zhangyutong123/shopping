@@ -76,3 +76,18 @@ Route::group((['prefix'=>'home']),function(){
 	Route::get('index/index','Home\IndexController@index');
 	
 });
+
+
+
+
+//后台订单路由
+Route::resource('admin/orders','Admin\OrdersController');
+
+//后台广告路由
+Route::resource('admin/advs','Admin\AdvsController');
+
+//后台地址路由
+Route::resource('admin/address','Admin\AddressController');
+
+//后台评价路由
+Route::resource('admin/replys','Admin\ReplysController');
