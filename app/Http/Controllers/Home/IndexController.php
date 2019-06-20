@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Cates;
+use App\Models\Goods;
 use App\Models\Banners;
 use App\Models\Announces;
 
@@ -22,8 +24,11 @@ class IndexController extends Controller
         // 获取公告
         $announces_data = Announces::get();
 
+        // 获取公告
+        $cates_data = Cates::get();
+
         // 显示模板
-        return view('home.index.index',['banners_data'=>$banners_data,'announces_data'=>$announces_data]);
+        return view('home.index.index',['banners_data'=>$banners_data,'announces_data'=>$announces_data,'cates_data'=>$cates_data]);
     }
 
     /**
