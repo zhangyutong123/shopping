@@ -87,6 +87,7 @@ Route::group((['prefix'=>'home']),function(){
 	
 });
 
-
+//前台分类
+Route::resource('/home/cates','Home\CatesController');
 
 

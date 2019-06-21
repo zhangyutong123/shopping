@@ -4,32 +4,19 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Cates;
 use App\Models\Goods;
-use App\Models\Banners;
-use App\Models\Announces;
 
-class IndexController extends Controller
+class CatesController extends Controller
 {
     /**
-     * 主页面
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // 获取轮播图
-        $banners_data = Banners::where('status',1)->get();
-
-        // 获取公告
-        $announces_data = Announces::get();
-
-
-        // 
-        $cates_data = Cates::get();
-
-        // 显示模板
-        return view('home.index.index',['banners_data'=>$banners_data,'announces_data'=>$announces_data,'cates_data'=>$cates_data]);
+        //
+        
     }
 
     /**
@@ -62,6 +49,10 @@ class IndexController extends Controller
     public function show($id)
     {
         //
+        $datas = Goods::where('cid',$id)->where('status',1)->get();
+
+        //加载页面
+        return view('home.cates.index',['datas'=>$datas]);
     }
 
     /**

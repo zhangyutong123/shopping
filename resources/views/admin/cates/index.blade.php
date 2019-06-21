@@ -25,8 +25,18 @@
                             <td>{{ $v->pid }}</td>
                             <td>{{ $v->path }}</td>
                             <td>
+                                <a class="btn btn-info btn-small" href="/admin/cates/{{ $v->id }}/edit?id={{ $v->id }}">修改</a>
+
+                                <form action="/admin/cates/{{ $v->id }}?id={{ $v->id }}" method="post" style="display: inline-block;">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <input type="submit" value="删除" class="btn btn-danger">
+                                </form>
+
                                 @if(substr_count($v->path,',') < 2)
+
                                 <a class="btn btn-info btn-small" href="/admin/cates/create?id={{ $v->id }}">添加子分类</a>
+
                                 @endif
                             </td>
                         </tr>

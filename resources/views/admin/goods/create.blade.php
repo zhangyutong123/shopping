@@ -41,7 +41,7 @@
         				<div class="mws-form-item">
         					<select class="small" name="cid">
                                 @foreach($cates as $k=>$v)
-                                @if(substr_count($v->path,',') > 0)
+                                @if(substr_count($v->path,',') > 1)
                                 <option value="{{ $v->id }}">{{ $v->cname }}</option>
                                 @endif
                                 @endforeach

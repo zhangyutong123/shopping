@@ -110,6 +110,8 @@ class GoodsController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        
         //执行文件上传
         if($request->hasFile('pic')){
 

@@ -1,4 +1,4 @@
-
+@include('home.public.header')
 @include('home.public.index')
 
 <div class="i_bg bg_color">
