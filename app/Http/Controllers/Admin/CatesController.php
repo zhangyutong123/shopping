@@ -74,7 +74,7 @@ class CatesController extends Controller
         $res1 = $cate->save();
 
         if($res1){
-            return redirect('cates/create')->with('success','添加成功');
+            return redirect('/admin/cates')->with('success','添加成功');
         }else{
             return back()->with('error','添加失败');
         }

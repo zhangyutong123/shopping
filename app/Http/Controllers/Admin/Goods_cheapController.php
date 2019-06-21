@@ -77,7 +77,7 @@ class Goods_cheapController extends Controller
         $res = DB::table('goods_cheap')->insert($data);
 
         if($res){
-            return redirect('/goods_cheap')->with('success','添加成功');
+            return redirect('/admin/goods_cheap')->with('success','添加成功');
         }else{
             return back()->with('error','添加失败');
         }
@@ -144,7 +144,7 @@ class Goods_cheapController extends Controller
         $res = DB::table('goods_cheap')->where('id',$id)->update($data);
 
         if($res){
-            return redirect('/goods_cheap')->with('success','修改成功');
+            return redirect('/admin/goods_cheap')->with('success','修改成功');
         }else{
             return back()->with('error','修改失败');
         }
@@ -165,7 +165,7 @@ class Goods_cheapController extends Controller
         //删除
         $res = DB::table('goods_cheap')->where('id',$id)->delete();
         if($res){
-            return redirect('/goods_cheap')->with('success','删除成功');
+            return redirect('/admin/goods_cheap')->with('success','删除成功');
         }else{
             return back()->with('error','修改失败');
         }

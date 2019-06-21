@@ -26,7 +26,7 @@
                             <td>{{ $v->path }}</td>
                             <td>
                                 @if(substr_count($v->path,',') < 2)
-                                <a class="btn btn-info btn-small" href="/cates/create?id={{ $v->id }}">添加子分类</a>
+                                <a class="btn btn-info btn-small" href="/admin/cates/create?id={{ $v->id }}">添加子分类</a>
                                 @endif
                             </td>
                         </tr>

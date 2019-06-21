@@ -6,7 +6,7 @@
         	<span>商品修改</span>
         </div>
         <div class="mws-panel-body no-padding">
-        	<form class="mws-form" action="/goods/{{ $goods->id }}" method="post" enctype="multipart/form-data">
+        	<form class="mws-form" action="/admin/goods/{{ $goods->id }}" method="post" enctype="multipart/form-data">
         		{{ csrf_field() }}
                 {{ method_field('PUT') }}
         		<div class="mws-form-inline">

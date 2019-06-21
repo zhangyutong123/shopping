@@ -11,7 +11,6 @@
                 <tr>
                     <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ID</font></font></th>
                     <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">管理员名称</font></font></th>
-                    <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">管理员头像</font></font></th>
                     <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">操作</font></font></th>
                 </tr>
             </thead>
@@ -20,9 +19,6 @@
                 <tr>
                     <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ $v->id }}</font></font></td>
                     <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ $v->uname }}</font></font></td>
-                    <td>
-                        <img style="border-radius: 5px;border:1px solid #ccc;width: 50px;" src="/uploads/{{ $v->profile }}">
-                    </td>
                     <td>
 						<a href="">删除</a>
 						<a href="">修改角色</a>

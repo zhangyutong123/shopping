@@ -21,16 +21,18 @@ Route::get('admin','Admin\LoginController@login')->name('admin_login');
 Route::post('admin/dologin','Admin\LoginController@dologin');
 // 后台 退出
 Route::get('admin/logout','Admin\LoginController@logout');
-// 后台 修改头像
-Route::post('admin/profile','Admin\IndexController@profile');
-// 后台 修改密码
-Route::post('admin/change','Admin\IndexController@change');
 
 // 后台 中间件/路由组
 Route::group(['prefix'=>'admin','middleware'=>['admin_login']], function(){
 
 	// 后台 首页
 	Route::get('index','Admin\IndexController@index');
+	//修改头像
+	Route::get('upfile','Admin\LoginController@upfile');
+	Route::post('dofile','Admin\LoginController@dofile');
+	//修改密码
+	Route::get('uppass','Admin\LoginController@uppass');
+	Route::post('dopass','Admin\LoginController@dopass');
 	// 后台 用户模块
 	Route::resource('users','Admin\UsersController');
 	// 后台 管理员
@@ -55,7 +57,6 @@ Route::group(['prefix'=>'admin','middleware'=>['admin_login']], function(){
 	Route::resource('goods_cheap','Admin\Goods_cheapController');
 	//友情链接路由
 	Route::resource('links','Admin\LinksController');
-
 	//后台订单路由
 	Route::resource('orders','Admin\OrdersController');
 	//后台广告路由

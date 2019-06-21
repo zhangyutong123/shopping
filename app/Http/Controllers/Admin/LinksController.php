@@ -49,7 +49,7 @@ class LinksController extends Controller
         $res = DB::table('links')->insert($data);
 
         if($res){
-            return redirect('/links')->with('success','添加成功');
+            return redirect('/admin/links')->with('success','添加成功');
         }else{
             return back()->with('error','添加失败');
         }
@@ -100,7 +100,7 @@ class LinksController extends Controller
         $res = DB::table('links')->update($data);
 
         if($res){
-            return redirect('/links')->with('success','修改成功');
+            return redirect('/admin/links')->with('success','修改成功');
         }else{
             return back()->with('error','修改失败');
         }
@@ -121,7 +121,7 @@ class LinksController extends Controller
         $res = DB::table('links')->where('id',$id)->delete();
         
         if($res){
-            return redirect('/links')->with('success','删除成功');
+            return redirect('/admin/links')->with('success','删除成功');
         }else{
             return back()->with('error','修改失败');
         }

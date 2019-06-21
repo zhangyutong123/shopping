@@ -29,8 +29,8 @@
                         <td>{{ $v->gprice }}</td>
                         <td>{{ $v->gcsize }}</td>
                         <td>
-                            <a class="btn btn-info btn-small" href="/goods_cheap/{{ $v->id }}/edit?id={{ $v->id }}">修改</a>
-                            <form action="/goods_cheap/{{ $v->id }}?id={{ $v->id }}" method="post" style="display: inline-block;">
+                            <a class="btn btn-info btn-small" href="/admin/goods_cheap/{{ $v->id }}/edit?id={{ $v->id }}">修改</a>
+                            <form action="/admin/goods_cheap/{{ $v->id }}?id={{ $v->id }}" method="post" style="display: inline-block;">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <input type="submit" value="删除" class="btn btn-danger">

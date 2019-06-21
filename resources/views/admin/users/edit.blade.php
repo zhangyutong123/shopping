@@ -51,7 +51,7 @@
         				</div>
                         <br />
                         <img src="/uploads/{{ $user->userinfo->profile }}" style="margin-left: 180px;width: 100px;">
-                            			</div> 
+                    </div> 
 
         		</div>
         		<div class="mws-button-row">
