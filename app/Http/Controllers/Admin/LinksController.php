@@ -49,7 +49,7 @@ class LinksController extends Controller
         $res = DB::table('links')->insert($data);
 
         if($res){
-            return redirect('/links')->with('success','添加成功');
+            return redirect('admin/links')->with('success','添加成功');
         }else{
             return back()->with('error','添加失败');
         }

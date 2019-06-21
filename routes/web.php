@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 // 后台 登录
 Route::get('admin','Admin\LoginController@login')->name('admin_login');
+// 后台 执行登录
 Route::post('admin/dologin','Admin\LoginController@dologin');
 // 后台 退出
 Route::get('admin/logout','Admin\LoginController@logout');
@@ -32,6 +33,12 @@ Route::group(['prefix'=>'admin','middleware'=>['admin_login']], function(){
 	Route::get('index','Admin\IndexController@index');
 	// 后台 用户模块
 	Route::resource('users','Admin\UsersController');
+	// 后台 管理员
+	Route::resource('adminuser','Admin\AdminuserController');
+	// 后台  角色
+	Route::resource('roles','Admin\RolesController');
+	// 后台 权限
+	Route::resource('nodes','Admin\NodesController');
 	// 后台 轮播模块
 	Route::resource('banners','Admin\BannersController');
 	// 后台 轮播状态
@@ -40,14 +47,32 @@ Route::group(['prefix'=>'admin','middleware'=>['admin_login']], function(){
 	Route::resource('announce','Admin\AnnounceController');
 	// 后台 推荐位模块
 	Route::resource('pushs','Admin\PushsController');
+	// 后台 分类 
+	Route::resource('cates','Admin\CatesController');
+	//商品路由
+	Route::resource('goods','Admin\GoodsController');
+	//特价商品路由
+	Route::resource('goods_cheap','Admin\Goods_cheapController');
+	//友情链接路由
+	Route::resource('links','Admin\LinksController');
+
+	//后台订单路由
+	Route::resource('orders','Admin\OrdersController');
+	//后台广告路由
+	Route::resource('advs','Admin\AdvsController');
+	//后台地址路由
+	Route::resource('address','Admin\AddressController');
+	//后台评价路由
+	Route::resource('replys','Admin\ReplysController');
 });
+
 
 Route::get('/','Home\IndexController@index');
 
 // 前台路由
 Route::group((['prefix'=>'home']),function(){
 
-	// 前台登录 路由
+	// 前台 登录 
 	Route::get('login/login','Home\LoginController@login');
 	Route::post('login/dologin','Home\LoginController@dologin');
 	// 前台 退出
@@ -56,11 +81,12 @@ Route::group((['prefix'=>'home']),function(){
 	Route::get('register/index','Home\RegisterController@index');
 	// 前台 执行 注册
 	Route::post('register/store','Home\RegisterController@store');
-
 	// 前台 首页
 	Route::get('index/index','Home\IndexController@index');
 	
 });
 
+//前台分类
+Route::resource('/home/cates','Home\CatesController');
 
 

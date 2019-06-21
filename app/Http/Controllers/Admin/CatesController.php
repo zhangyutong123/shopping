@@ -12,8 +12,10 @@ class CatesController extends Controller
 
     public function getCateData()
     {
+        //按条件查询
         $cates = Cates::select('*',DB::raw("concat(path,',',id) as paths"))->orderBy('paths','asc')->get();
 
+        //遍历数据
         foreach ($cates as $key => $value) {
             $n = substr_count($value->path,',');
 
@@ -74,7 +76,7 @@ class CatesController extends Controller
         $res1 = $cate->save();
 
         if($res1){
-            return redirect('cates/create')->with('success','添加成功');
+            return redirect('admin/cates')->with('success','添加成功');
         }else{
             return back()->with('error','添加失败');
         }
@@ -97,9 +99,12 @@ class CatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $id = $request->input('id',0);
+        $cates = Cates::where('id',$id)->first();
+
+        return view('admin.cates.edit',['cates'=>$cates,'id'=>$id]);
     }
 
     /**
@@ -109,9 +114,25 @@ class CatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        //接收数据
+        $cname = $request->input('cname',0);
+
+
+        if($cname == ''){
+            return back()->with('error','类名不能为空');
+        }else{
+            $data['cname'] = $cname;
+
+            $res = DB::table('cates')->where('id',$id)->update($data);
+
+            if($res){
+                return redirect('/admin/cates')->with('success','添加成功');
+            }else{
+                return back()->with('error','添加失败');
+            }
+        }
     }
 
     /**
@@ -120,8 +141,18 @@ class CatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        //接收id
+        $id = $request->input('id',0);
+
+        //删除
+        $res = DB::table('cates')->where('id',$id)->delete();
+
+        if($res){
+            return redirect('/admin/cates')->with('success','删除成功');
+        }else{
+            return back()->with('error','修改失败');
+        }
     }
 }

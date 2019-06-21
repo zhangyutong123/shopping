@@ -6,7 +6,7 @@
         	<span>分类添加</span>
         </div>
         <div class="mws-panel-body no-padding">
-        	<form class="mws-form" action="/cates" method="post">
+        	<form class="mws-form" action="/admin/cates" method="post">
         		{{ csrf_field() }}
         		<div class="mws-form-inline">
         			<div class="mws-form-row">

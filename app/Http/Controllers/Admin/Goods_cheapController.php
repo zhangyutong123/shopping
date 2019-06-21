@@ -77,7 +77,7 @@ class Goods_cheapController extends Controller
         $res = DB::table('goods_cheap')->insert($data);
 
         if($res){
-            return redirect('/goods_cheap')->with('success','添加成功');
+            return redirect('admin/goods_cheap')->with('success','添加成功');
         }else{
             return back()->with('error','添加失败');
         }

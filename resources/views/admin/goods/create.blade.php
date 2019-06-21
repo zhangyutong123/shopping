@@ -6,7 +6,7 @@
         	<span>商品添加</span>
         </div>
         <div class="mws-panel-body no-padding">
-        	<form class="mws-form" action="/goods" method="post" enctype="multipart/form-data">
+        	<form class="mws-form" action="/admin/goods" method="post" enctype="multipart/form-data">
         		{{ csrf_field() }}
         		<div class="mws-form-inline">
         			<div class="mws-form-row">
@@ -41,7 +41,7 @@
         				<div class="mws-form-item">
         					<select class="small" name="cid">
                                 @foreach($cates as $k=>$v)
-                                @if(substr_count($v->path,',') > 0)
+                                @if(substr_count($v->path,',') > 1)
                                 <option value="{{ $v->id }}">{{ $v->cname }}</option>
                                 @endif
                                 @endforeach

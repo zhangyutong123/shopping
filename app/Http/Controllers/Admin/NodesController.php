@@ -1,35 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Cates;
-use App\Models\Goods;
-use App\Models\Banners;
-use App\Models\Announces;
-
-class IndexController extends Controller
+use DB;
+class NodesController extends Controller
 {
     /**
-     * 主页面
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // 获取轮播图
-        $banners_data = Banners::where('status',1)->get();
-
-        // 获取公告
-        $announces_data = Announces::get();
-
-
-        // 
-        $cates_data = Cates::get();
-
-        // 显示模板
-        return view('home.index.index',['banners_data'=>$banners_data,'announces_data'=>$announces_data,'cates_data'=>$cates_data]);
+       $data = DB::table('nodes')->get();
+        // 加载模板
+        return view('admin.nodes.index',['data'=>$data]);
     }
 
     /**
@@ -39,7 +26,8 @@ class IndexController extends Controller
      */
     public function create()
     {
-        //
+        // 加载模板
+        return view('admin.nodes.create');
     }
 
     /**
@@ -51,6 +39,24 @@ class IndexController extends Controller
     public function store(Request $request)
     {
         //
+        // dump($request->all());
+
+        $cname = $request->input('cname');
+
+        $controller = $cname.'controller';
+
+        $aname = $request->input('aname');
+
+        $desc = $request->input('desc');
+
+        $res = DB::table('nodes')->insert(['cname'=>$controller,'aname'=>$aname,'desc'=>$desc]);
+        if($res){
+            return redirect('admin/nodes')->with('success','添加成功');
+        }else{
+            return back()->with('error','添加失败');
+        }
+
+
     }
 
     /**

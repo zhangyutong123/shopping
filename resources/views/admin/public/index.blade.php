@@ -66,7 +66,7 @@
             
             	<!-- User Photo -->
             	<div id="mws-user-photo">
-                	<img src="/admins/example/profile.jpg" alt="User Photo">
+                	<img src="/uploads//{{ session('admin_userinfo')->profile }}" alt="User Photo">.
                 </div>
                 
                 <!-- Username and Functions -->
@@ -104,6 +104,14 @@
             <!-- Main Navigation -->
             <div id="mws-navigation">
                 <ul>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-user"></i> 管理员</a>
+                        <ul>
+                            <li><a href="/admin/adminuser">管理员列表</a></li>
+                            <li><a href="/admin/adminuser/create">管理员添加</a></li>
+                        </ul>
+                    </li>
                     
                     <li class="active">
                         <a href="#"><i class="icon-users"></i> 用户管理</a>
@@ -114,34 +122,50 @@
                     </li>
 
                     <li class="active">
+                        <a href="#"><i class="icon-warning-sign"></i> 角色管理</a>
+                        <ul>
+                            <li><a href="/admin/roles">角色列表</a></li>
+                            <li><a href="/admin/roles/create">角色添加</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-key-2"></i>权限管理</a>
+                        <ul>
+                            <li><a href="/admin/nodes">权限列表</a></li>
+                            <li><a href="/admin/nodes/create">权限添加</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
                         <a href="#"><i class="icon-google-plus"></i> 分类管理</a>
                         <ul>
-                            <li><a href="/cates">分类列表</a></li>
-                            <li><a href="/cates/create">分类添加</a></li>
+                            <li><a href="/admin/cates">分类列表</a></li>
+                            <li><a href="/admin/cates/create">分类添加</a></li>
                         </ul>
                     </li>
 
                     <li class="active">
                         <a href="#"><i class="icon-th"></i> 商品管理</a>
                         <ul>
-                            <li><a href="/goods">商品列表</a></li>
-                            <li><a href="/goods/create">商品添加</a></li>
+                            <li><a href="/admin/goods">商品列表</a></li>
+                            <li><a href="/admin/goods/create">商品添加</a></li>
                         </ul>
                     </li>
 
                     <li class="active">
                         <a href="#"><i class="icon-picture"></i> 特价商品管理</a>
                         <ul>
-                            <li><a href="/goods_cheap">特价商品列表</a></li>
-                            <li><a href="/goods_cheap/create">特价商品添加</a></li>
+                            <li><a href="/admin/goods_cheap">特价商品列表</a></li>
+                            <li><a href="/admin/goods_cheap/create">特价商品添加</a></li>
                         </ul>
                     </li>
 
                     <li class="active">
                         <a href="#"><i class="icon-list"></i> 友情链接管理</a>
                         <ul>
-                            <li><a href="/links">友情链接列表</a></li>
-                            <li><a href="/links/create">友情链接添加</a></li>
+                            <li><a href="/admin/links">友情链接列表</a></li>
+                            <li><a href="/admin/links/create">友情链接添加</a></li>
                         </ul>
                     </li>
 
@@ -165,6 +189,29 @@
                         <a href="#"><i class="icon-th"></i> 推荐位管理</a>
                         <ul>
                             <li><a href="/admin/pushs">推荐位列表</a></li>
+                        </ul>
+                    </li>
+
+
+                     <li class="active">
+                        <a href="#"><i class="icon-users"></i> 订单管理</a>
+                        <ul>
+                            <li><a href="/admin/orders">订单列表</a></li>
+                        </ul>
+                    </li>
+                    
+                     <li class="active">
+                        <a href="#"><i class="icon-users"></i>广告管理</a>
+                        <ul>
+                            <li><a href="/admin/advs">广告列表</a></li>
+                            <li><a href="/admin/advs/create">广告添加</a></li>
+                        </ul>
+                    </li>
+               
+                     <li class="active">
+                        <a href="#"><i class="icon-users"></i>评论管理</a>
+                        <ul>
+                            <li><a href="/admin/replys">评论列表</a></li> 
                         </ul>
                     </li>
                     

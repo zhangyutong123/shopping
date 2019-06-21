@@ -66,7 +66,7 @@ class GoodsController extends Controller
         $res = DB::table('goods')->insert($data);
 
         if($res){
-            return redirect('/goods')->with('success','添加成功');
+            return redirect('/admin/goods')->with('success','添加成功');
         }else{
             return back()->with('error','添加失败');
         }
@@ -110,6 +110,8 @@ class GoodsController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        
         //执行文件上传
         if($request->hasFile('pic')){
 
@@ -135,7 +137,7 @@ class GoodsController extends Controller
         $res = DB::table('goods')->where('id',$id)->update($data);
 
         if($res){
-            return redirect('/goods')->with('success','修改成功');
+            return redirect('/admin/goods')->with('success','修改成功');
         }else{
             return back()->with('error','修改失败');
         }
@@ -156,7 +158,7 @@ class GoodsController extends Controller
         //删除
         $res = DB::table('goods')->where('id',$id)->delete();
         if($res){
-            return redirect('/goods')->with('success','删除成功');
+            return redirect('/admin/goods')->with('success','删除成功');
         }else{
             return back()->with('error','修改失败');
         }

@@ -1,35 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Cates;
-use App\Models\Goods;
-use App\Models\Banners;
-use App\Models\Announces;
 
-class IndexController extends Controller
+use App\Models\Replys;
+use DB;
+class ReplysController extends Controller
 {
     /**
-     * 主页面
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // 获取轮播图
-        $banners_data = Banners::where('status',1)->get();
+        $search_uid = $request->input('search_uid','');
+        $replys= Replys::where('uid','like','%'.$search_uid.'%')->paginate(5);
+        // 加载页面
 
-        // 获取公告
-        $announces_data = Announces::get();
-
-
-        // 
-        $cates_data = Cates::get();
-
-        // 显示模板
-        return view('home.index.index',['banners_data'=>$banners_data,'announces_data'=>$announces_data,'cates_data'=>$cates_data]);
+        return view('admin.replys.index',['replys'=>$replys,'params'=>$request->all()]);
     }
 
     /**
