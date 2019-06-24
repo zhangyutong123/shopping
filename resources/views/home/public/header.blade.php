@@ -35,15 +35,32 @@
 <body>  
 <!--Begin Header Begin-->
 <div class="soubg">
-	<div class="sou">
+    @if(session('home_login'))
+       <div class="sou">
         <div style="float: left;">
             <marquee behavior="" direction="" width="800px">欢迎来到 MTY 商城,&nbsp;&nbsp;&nbsp;从赝品里找真货,不如从正品里面选好货!!&nbsp;&nbsp;&nbsp;让我们一起引领消费时尚,创造美好是生活</marquee>
         </div>
         <span class="fr">
-        	<span class="fl">你好，请<a href="/home/login/login">登录</a>&nbsp; <a href="Regist.html" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a href="/home/personal/index">个人中心</a>
+            <span class="fl">
+               <a href="">{{session('home_userinfo')->uname}}</a>
+               <a href="/home/login/logout">退出</a>
+
+
+              <a href="/home/personal/index">个人中心</a>
         </span>
-    </div>
-</div>
+         @else
+         <div class="sou">
+        <div style="float: left;">
+            <marquee behavior="" direction="" width="800px">欢迎来到 MTY 商城,&nbsp;&nbsp;&nbsp;从赝品里找真货,不如从正品里面选好货!!&nbsp;&nbsp;&nbsp;让我们一起引领消费时尚,创造美好是生活</marquee>
+        </div>
+        <span class="fr">
+            <span class="fl">你好，请<a href="/home/login/index">登录</a>&nbsp; <a href="/home/register" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;
+
+
+         <a href="/home/personal/index">个人中心</a>
+        </span>
+         @endif
+ </div>
 <div class="top">
     <div class="logo" style="width: 220px; height: 120px; margin-top: 15px;">
         <a href="/">

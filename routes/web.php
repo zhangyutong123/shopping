@@ -72,22 +72,19 @@ Route::group(['prefix'=>'admin','middleware'=>['admin_login']], function(){
 	Route::resource('replys','Admin\ReplysController');
 });
 
-
 Route::get('/','Home\IndexController@index');
+
 
 // 前台路由
 Route::group((['prefix'=>'home']),function(){
 
-	// 前台 登录 
-	Route::get('login/login','Home\LoginController@login');
-	// 前台 执行 登录
+	 //前台注册 邮箱 手机号
+	Route::get('register','Home\RegisterController@index');
+	Route::get('register/sendPhone','Home\RegisterController@sendPhone');
+	Route::get('login/index','Home\LoginController@index');
 	Route::post('login/dologin','Home\LoginController@dologin');
-	// 前台 退出
+	Route::post('login/dologin','Home\LoginController@dologin');
 	Route::get('login/logout','Home\LoginController@logout');
-	// 前台 注册
-	Route::get('register/index','Home\RegisterController@index');
-	// 前台 执行 注册
-	Route::post('register/store','Home\RegisterController@store');
 	// 前台 首页
 	Route::get('index/index','Home\IndexController@index');
 	// 前台 分类
