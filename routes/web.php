@@ -68,26 +68,77 @@ Route::group(['prefix'=>'admin','middleware'=>['admin_login']], function(){
 });
 
 
-Route::get('/','Home\IndexController@index');
 
-// 前台路由
-Route::group((['prefix'=>'home']),function(){
 
-	// 前台 登录 
-	Route::get('login/login','Home\LoginController@login');
-	Route::post('login/dologin','Home\LoginController@dologin');
-	// 前台 退出
-	Route::get('login/logout','Home\LoginController@logout');
-	// 前台 注册
-	Route::get('register/index','Home\RegisterController@index');
-	// 前台 执行 注册
-	Route::post('register/store','Home\RegisterController@store');
-	// 前台 首页
-	Route::get('index/index','Home\IndexController@index');
-	
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //前台分类
 Route::resource('/home/cates','Home\CatesController');
 
+Route::get('/','Home\IndexController@index');
+ //前台注册 邮箱 手机号
+Route::get('home/register','Home\RegisterController@index');
+Route::get('home/register/sendPhone','Home\RegisterController@sendPhone');
+Route::get('home/login/index','Home\LoginController@index');
+Route::post('home/login/dologin','Home\LoginController@dologin');
+Route::post('home/login/dologin','Home\LoginController@dologin');
+ Route::get('home/login/logout','Home\LoginController@logout');
 

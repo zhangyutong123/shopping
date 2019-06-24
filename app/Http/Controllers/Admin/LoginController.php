@@ -23,7 +23,6 @@ class LoginController extends Controller
         
         $uname = $request->input('uname','');
         $upass = $request->input('upass','');
-
         // 获取数据
         $data = DB::table('admin_users')->where('uname',$uname)->first();
         
@@ -98,7 +97,7 @@ class LoginController extends Controller
           ]);
 
         // 获取旧密码
-        $oldpass = $request
+        
     }
 
     // 修改头像
