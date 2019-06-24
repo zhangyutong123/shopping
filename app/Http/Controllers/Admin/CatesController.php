@@ -30,7 +30,6 @@ class CatesController extends Controller
      */
     public function index()
     {     
-
         //加载页面
         return view('admin.cates.index',['cates'=>self::getCateData()]);
     }

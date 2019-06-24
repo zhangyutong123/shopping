@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Advs extends Model
+class Carts extends Model
 {
-    public $table = 'advs';
+    //设置表名
 }

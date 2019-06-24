@@ -15,13 +15,18 @@ class GoodsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
         $goods = Goods::all();
         $cates = Cates::all();
+
+        // 接收搜索的参数
+        $search_gname = $request->input('search_gname','');
     	
+        $goods = Goods::where('gname','like','%'.$search_gname.'%')->paginate(5);
+
     	//加载html页面
-    	return view('admin.goods.index',['goods'=>$goods,'cates'=>$cates]);
+    	return view('admin.goods.index',['goods'=>$goods,'cates'=>$cates,'params'=>$request->all()]);
     }
 
     /**

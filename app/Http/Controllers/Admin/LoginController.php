@@ -77,7 +77,7 @@ class LoginController extends Controller
     // 修改密码
     public function uppass(Request $request)
     {
-
+        // 加载后台页面
         return view('admin.upfile_uppass.uppass');
     }
 
@@ -90,7 +90,7 @@ class LoginController extends Controller
                 'upass' => 'required|regex:/^[a-zA-Z]\w{5,17}$/',
                 'repass' => 'required|same:upass'       
             ],[   
-                'oldpass.required' => '旧密码不能为空!',
+                'oldpass.required' => '原密码不能为空!',
                 'upass.required' => '密码不能为空!',
                 'upass.regex' => '密码格式不正确!',
                 'repass.required' => '确认密码不能为空!',
@@ -98,15 +98,42 @@ class LoginController extends Controller
           ]);
 
         // 获取旧密码
-        $oldpass = $request
+        $oldpass = $request->oldpass;
+
+        // 获取当前管理员的id
+        $id = session('admin_userinfo')->id;
+
+        // 获取当前用户的信息
+        $result = DB::table('admin_users')->where('id',$id)->first();
+
+        // 检测原密码是否正确
+        if(!Hash::check($oldpass,$result->upass)){
+            return back()->with('error','原密码有误');
+        }
+
+        $upass = Hash::make($request->input('upass'));
+
+        // 将新密码 放到数据库
+        $data['upass'] = $upass;
+
+        $data = DB::table('admin_users')->where('id',$id)->update($data);
+
+        if($data){
+            return redirect('/admin');
+        }else{
+            return back()->with('error','修改密码失败!!');
+        }
     }
 
     // 修改头像
     public function upfile(Request $request)
     {
+        // 获取当前用户id
         $id = session('admin_userinfo')->id;
+        // 根据id查询当前用户的信息
         $data = DB::table('admin_users')->where('id',$id)->first();
-        // dd($data);
+
+        //
         return view('admin.upfile_uppass.upfile',['data'=>$data]);
 
     }
@@ -116,7 +143,6 @@ class LoginController extends Controller
     {
          $id = session('admin_userinfo')->id;
         $file = $request->file('profile');
-        // dd($file);
 
         if ($request->hasFile('profile')) {
 

@@ -22,9 +22,9 @@
         		{{ csrf_field() }}
         		<div class="mws-form-inline">
         			<div class="mws-form-row">
-        				<label class="mws-form-label">旧密码</label>
+        				<label class="mws-form-label">原密码</label>
         				<div class="mws-form-item">
-        					<input type="text" class="small" name="oldpass" style="width:300px">
+        					<input type="password" class="small" name="oldpass" style="width:300px">
         				</div>
         			</div>
 

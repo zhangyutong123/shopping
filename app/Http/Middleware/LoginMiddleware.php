@@ -15,6 +15,7 @@ class LoginMiddleware
      */
     public function handle($request, Closure $next)
     {
+        // $Node
         if(session('admin_login')) {
             return $next($request);
         } else {
