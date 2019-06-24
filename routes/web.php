@@ -27,82 +27,6 @@ Route::get('admin/rbac',function(){
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // 后台 中间件/路由组
 Route::group(['prefix'=>'admin','middleware'=>['admin_login']], function(){
 
@@ -168,6 +92,10 @@ Route::group((['prefix'=>'home']),function(){
 	Route::get('index/index','Home\IndexController@index');
 	// 前台 分类
 	Route::resource('/cates','Home\CatesController');
+	//商品详情
+	Route::get('/goods','Home\GoodsController@index');
+	//购物车路由
+	Route::get('/cars','Home\GoodsController@car');
 	// 前台 个人中心 用户中心
 	Route::get('personal/index','Home\PersonalController@index');	
 	// 前台 个人中心 账户安全
@@ -181,7 +109,5 @@ Route::group((['prefix'=>'home']),function(){
 	// 前台 确认订单页
 	Route::get('cart/confirm','Home\CartController@confirm');	
 });
-
-
 
 

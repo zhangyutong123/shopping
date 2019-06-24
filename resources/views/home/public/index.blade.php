@@ -10,7 +10,7 @@
             <div class="leftNav">
                 <ul>    
                     @foreach($cates_data as $k=>$v) 
-                    @if(substr_count($v->path,',') < 1) 
+                    @if(substr_count($v->path,',') < 1)
                     <li>
                         <div class="fj">
                             <span class="n_img"><span></span><img src="/homes/images/nav1.png" /></span>
