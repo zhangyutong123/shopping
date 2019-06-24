@@ -88,5 +88,9 @@ Route::group((['prefix'=>'home']),function(){
 
 //前台分类
 Route::resource('/home/cates','Home\CatesController');
+//商品详情
+Route::get('/home/goods','Home\GoodsController@index');
+//购物车路由
+Route::get('/home/cars','Home\GoodsController@car');
 
 

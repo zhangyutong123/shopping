@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Goods;
+use App\Models\Cates;
 
 class CatesController extends Controller
 {
@@ -51,8 +52,10 @@ class CatesController extends Controller
         //
         $datas = Goods::where('cid',$id)->where('status',1)->get();
 
+        $cates_data = Cates::get();
+
         //加载页面
-        return view('home.cates.index',['datas'=>$datas]);
+        return view('home.cates.index',['datas'=>$datas,'cates_data'=>$cates_data]);
     }
 
     /**
