@@ -39,8 +39,7 @@ class LoginController extends Controller
         session(['home_login'=>true]);
         session(['home_userinfo'=>$data]);
 
-      $temp = [];
-      session(['data'=>$temp]);
+
       return redirect('/');
     }
 

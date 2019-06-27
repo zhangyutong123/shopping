@@ -204,6 +204,7 @@
     </div>
     <!--End 限时特卖 End-->
     <div class="content mar_20">
+        FD
     	<img src="/homes/images/mban_1.jpg" width="1200" height="110" />
     </div>
 	<!--Begin 进口 生鲜 Begin-->

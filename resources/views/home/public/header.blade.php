@@ -8,7 +8,8 @@
         <script type="text/javascript">
            EvPNG.fix('div, ul, img, li, input, a'); 
         </script>
-    <![endif]-->    
+    <![endif]--> 
+    <link href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561371080211&di=ad7900a583b26bb361f78862dfc38685&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ffashion%2Fcrawl%2F300%2Fw550h550%2F20190624%2Fe359-hyvnhqq1070591.jpg" rel="shotrcut icon" />   
     <script type="text/javascript" src="/homes/js/jquery-1.11.1.min_044d0927.js"></script>
 	<script type="text/javascript" src="/homes/js/jquery.bxslider_e88acd1b.js"></script>
     

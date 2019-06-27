@@ -105,6 +105,10 @@ Route::group((['prefix'=>'home']),function(){
 	Route::resource('/cart','Home\CartController');
 	// 前台 确认订单页
 	Route::get('cart/confirm','Home\CartController@confirm');	
+
+   //前台显示回复
+   Route::get('goods/hfdex','Home\GoodsController@hfdex');
+   //前台自行添加回复
+   Route::post('goods/hfeate','Home\GoodsController@hfeate');
+	
 });
-
-

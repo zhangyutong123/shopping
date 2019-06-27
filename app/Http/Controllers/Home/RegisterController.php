@@ -146,4 +146,12 @@ class RegisterController extends Controller
            return back()->with('error','注册失败请从新注册');
         }
    }
+
+
+   //邮箱注册
+   public function index()
+   {
+
+   }
+   
 }
