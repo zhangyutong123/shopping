@@ -24,12 +24,15 @@ class IndexController extends Controller
         // 获取公告
         $announces_data = Announces::get();
 
-
-        // 
+        // 商品分类
         $cates_data = Cates::get();
 
+        // 首页商品推荐 
+        $goods_push = Goods::where('status',1)->get();
+
+
         // 显示模板
-        return view('home.index.index',['banners_data'=>$banners_data,'announces_data'=>$announces_data,'cates_data'=>$cates_data]);
+        return view('home.index.index',['banners_data'=>$banners_data,'announces_data'=>$announces_data,'cates_data'=>$cates_data,'goods_push'=>$goods_push]);
     }
 
     /**

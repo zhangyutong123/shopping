@@ -83,14 +83,14 @@ class BannersController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 显示修改页面
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        // 轮播图 修改
+        // 找到对应的轮播图id
          $banner = Banners::find($id);
 
         // 加载修改页面
@@ -98,7 +98,7 @@ class BannersController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 执行修改
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -106,7 +106,7 @@ class BannersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 轮播图 执行修改
+        // 开始事务
          DB::beginTransaction();
         // 获取轮播图片
         if($request->hasFile('url')){

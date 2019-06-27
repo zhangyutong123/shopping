@@ -171,7 +171,6 @@ class UsersController extends Controller
         $res1 = Users::destroy($id);
         $res2 = UsersInfo::where('uid',$id)->delete();
 
-        // Storage::delete($res2->profile);
         if($res1 && $res2){
             DB::commit();
             return redirect('admin/users')->with('success','删除成功');

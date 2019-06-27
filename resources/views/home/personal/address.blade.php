@@ -17,7 +17,7 @@
   <script type="text/javascript" src="js/select.js"></script>
         
     
-<title>尤洪</title>
+<title>收货地址</title>
 </head>
 <body>  
 <!--Begin Header Begin-->
@@ -31,50 +31,54 @@
 <!-- End 侧边栏 -->
     <div class="m_right">
         <p></p>
-            <div class="mem_tit">收货地址</div>
+            <div class="mem_tit">
+              收货地址
+              <span style="float: right; margin-top: 10px;">
+                <a href="/home/personal/addaddress" >
+                  <button>添加新地址</button>
+                </a>
+              </span>
+            </div>
+
+      @foreach($address_data as $k=>$v)
+      @if($v->uid == session('home_userinfo')->id)
       <div class="address">
-              <div class="a_close"><a href="#"><img src="/homes/images/a_close.png" /></a></div>
+
+        <!-- 删除操作 start -->
+          <div class="a_close">
+            <a href="/home/personal/del?id={{ $v->id }}" onclick="return confirm('确定要删除么?')">
+              <img src="/homes/images/a_close.png" />
+            </a>
+          </div>
+        <!-- 删除操作 end -->
+
               <table border="0" class="add_t" align="center" style="width:98%; margin:10px auto;" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td colspan="2" style="font-size:14px; color:#ff4e00;">杨杨公司</td>
+                    <td colspan="2" style="font-size:14px; color:#ff4e00;">{{ session('home_userinfo')->uname }}</td>
                   </tr>
                   <tr>
                     <td align="right" width="80">收货人姓名：</td>
-                    <td>杨杨</td>
+                    <td>{{ $v->aname }}</td>
                   </tr>
                   <tr>
-                    <td align="right">配送区域：</td>
-                    <td>四川成都市武侯区三环以内</td>
-                  </tr>
-                  <tr>
-                    <td align="right">详细地址：</td>
-                    <td>科华北路66号世外桃源写字楼3楼</td>
+                    <td align="right">收货地址：</td>
+                    <td>{{ $v->province }}</td>
                   </tr>
                   <tr>
                     <td align="right">手机：</td>
-                    <td>12345678998</td>
+                    <td>{{ $v->aphone }}</td>
                   </tr>
                   <tr>
-                    <td align="right">电话：</td>
-                    <td>028-12345678</td>
-                  </tr>
-                  <tr>
-                    <td align="right">电子邮箱：</td>
-                    <td>123456789@qq.com</td>
-                  </tr>
-                  <tr>
-                    <td align="right">标志建筑：</td>
-                    <td>世外桃源</td>
+                    <td align="right">邮编：</td>
+                    <td>{{ $v->code }}</td>
                   </tr>
                 </table>
-        
                 <p align="right">
-                  <a href="#" style="color:#ff4e00;">添加新地址</a>&nbsp; &nbsp; &nbsp; &nbsp; <a href="#" style="color:#ff4e00;">编辑</a>&nbsp; &nbsp; &nbsp; &nbsp; 
+                  <a href="/home/personal/upaddress?id={{ $v->id }}" style="color:#ff4e00;">编辑</a>&nbsp; &nbsp; &nbsp; &nbsp; 
                 </p>
-
-            </div>
-
-
+                </div>
+                @endif
+               @endforeach
     </div>
 </div>
   <!--End 内容 End--> 

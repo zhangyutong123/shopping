@@ -102,19 +102,6 @@
             
             <div id="tsPicContainer">
                 <div id="tsImgSArrL" onclick="tsScrollArrLeft()"></div>
-                <!-- 多视图 -->
-                <!-- <div id="tsImgSCon">
-                    <ul>
-                        <li onclick="showPic(0)" rel="MagicZoom" class="tsSelectImg"><img src="/homes/images/ps1.jpg" tsImgS="images/ps1.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(1)" rel="MagicZoom"><img src="/homes/images/ps2.jpg" tsImgS="images/ps2.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(2)" rel="MagicZoom"><img src="/homes/images/ps3.jpg" tsImgS="images/ps3.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(3)" rel="MagicZoom"><img src="/homes/images/ps4.jpg" tsImgS="images/ps4.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(4)" rel="MagicZoom"><img src="/homes/images/ps1.jpg" tsImgS="images/ps1.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(5)" rel="MagicZoom"><img src="/homes/images/ps2.jpg" tsImgS="images/ps2.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(6)" rel="MagicZoom"><img src="/homes/images/ps3.jpg" tsImgS="images/ps3.jpg" width="79" height="79" /></li>
-                        <li onclick="showPic(7)" rel="MagicZoom"><img src="/homes/images/ps4.jpg" tsImgS="images/ps4.jpg" width="79" height="79" /></li>
-                    </ul>
-                </div> -->
                 <div id="tsImgSArrR" onclick="tsScrollArrRight()"></div>
             </div>
             <img class="MagicZoomLoading" width="16" height="16" src="/homes/images/loading.gif" alt="Loading..." />				

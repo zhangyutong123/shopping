@@ -110,9 +110,9 @@ class LoginController extends Controller
             return back()->with('error','原密码有误');
         }
 
+        // 密码加密
         $upass = Hash::make($request->input('upass'));
 
-        // 将新密码 放到数据库
         $data['upass'] = $upass;
 
         $data = DB::table('admin_users')->where('id',$id)->update($data);

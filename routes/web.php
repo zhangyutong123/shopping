@@ -81,26 +81,44 @@ Route::group((['prefix'=>'home']),function(){
 	 //前台注册 邮箱 手机号
 	Route::get('register','Home\RegisterController@index');
 	Route::get('register/sendPhone','Home\RegisterController@sendPhone');
+	// 前台登录
 	Route::get('login/index','Home\LoginController@index');
 	Route::post('login/dologin','Home\LoginController@dologin');
 	Route::post('login/dologin','Home\LoginController@dologin');
+	// 前台 退出
 	Route::get('login/logout','Home\LoginController@logout');
 	// 前台 首页
 	Route::get('index/index','Home\IndexController@index');
 	// 前台 分类
 	Route::resource('/cates','Home\CatesController');
-	//商品详情
+	// 商品详情
 	Route::get('/goods','Home\GoodsController@index');
 	//购物车路由
 	Route::get('/cars','Home\GoodsController@car');
 	// 前台 个人中心 用户中心
-	Route::get('personal/index','Home\PersonalController@index');	
-	// 前台 个人中心 账户安全
+	Route::get('personal/index','Home\PersonalController@index');
+	// 前台 个人中心 修改信息
+	Route::get('personal/upinfo','Home\PersonalController@upinfo');	
+	// 前台 个人中心 执行修改
+	Route::post('personal/doinfo','Home\PersonalController@doinfo');	
+	// 前台 个人中心 修改密码
 	Route::get('personal/safe','Home\PersonalController@safe');	
+	// 前台 个人中心 修改密码
+	Route::post('personal/dosafe','Home\PersonalController@dosafe');	
 	// 前台 个人中心 我的订单
 	Route::get('personal/order','Home\PersonalController@order');	
-	// 前台 个人中心 收货地址
+	// 前台 个人中心 收货地址显示
 	Route::get('personal/address','Home\PersonalController@address');	
+	// 前台 个人中心 收货地址删除
+	Route::get('personal/del','Home\PersonalController@del');
+	// 前台 个人中心 收货地址添加
+	Route::get('personal/addaddress','Home\PersonalController@addaddress');
+	// 前台 个人中心 收货地址执行添加
+	Route::post('personal/doaddress','Home\PersonalController@doaddress');
+	// 前台 个人中心 收货地址修改
+	Route::get('personal/upaddress','Home\PersonalController@upaddress');
+	// 前台 个人中心 收货地址执行修改
+	Route::post('personal/doupaddress','Home\PersonalController@doupaddress');
 	// 前台 购物车页面
 	Route::resource('/cart','Home\CartController');
 	// 前台 确认订单页

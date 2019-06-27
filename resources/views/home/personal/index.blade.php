@@ -35,29 +35,29 @@
               <table border="0" style="width:870px; line-height:22px;" cellspacing="0" cellpadding="0">
                   <tbody>
                       <tr valign="top">
-                          <td width="150"><img src="/homes/images/user.jpg" width="90" height="90"></td>
+                          <td width="150"><img src="/uploads/{{ $users_info->profile }}" width="90" height="90"></td>
                           <td>
                               <div class="m_user">Welcom to our shopping!</div>
-                              <p>登录名: tong</p>
-                              <p>登录时间: 2015-09-28 18:19:47&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ><a href="" style="color: orange;">修改信息</a></span></p>
+                              <p>登录名: {{ session('home_userinfo')->uname }}</p>
+                              <p>用户真实姓名: {{ $users_info->uname }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ><a href="/home/personal/upinfo" style="color: orange;">修改信息</a></span></p>
                           </td>
                       </tr>
                   </tbody>
               </table>  
             </div>  
              <div class="mem_t" style="margin-left: 180px; color: grey;"><h3>账号信息</h3></div>
+             <br /> 
             <table border="0" class="mon_tab" style="width:600px; margin-bottom:20px; margin-left: 170px;" cellspacing="0" cellpadding="0">
               <tr>
-                <td width="40%">用户ID：<span style="color:#555555;">12345678</span></td>
-                <td width="60%">邀请人：<span style="color:#555555;">邀请人姓名</span></td>
+                <td>电&nbsp; &nbsp; 话：<span style="color:#555555;">{{ $users_info->tel }}</span></td>
+                <td>邮&nbsp; &nbsp; 箱：<span style="color:#555555;">{{ $users_info->email }}</span></td>
               </tr>
               <tr>
-                <td>电&nbsp; &nbsp; 话：<span style="color:#555555;">1861111111</span></td>
-                <td>邮&nbsp; &nbsp; 箱：<span style="color:#555555;">12345678@qq.com</span></td>
+                <td colspan="2">&nbsp;</td>
               </tr>
               <tr>
-                <td>身份证号：<span style="color:#555555;">522555123456789</span></td>
-                <td>注册时间：<span style="color:#555555;">2015-10-10</span></td>
+                <td>注册时间 :<span style="color:#555555;">{{ $users_info->created_at }}</span></td>
+                <td>修改时间 :<span style="color:#555555;">{{ $users_info->updated_at }}</span></td>
               </tr>
             </table>
     </div>

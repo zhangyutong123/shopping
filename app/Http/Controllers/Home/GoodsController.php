@@ -9,7 +9,6 @@ use App\Models\Cates;
 
 class GoodsController extends Controller
 {
-    //
     //商品详情
     public function index(Request $request){
 
