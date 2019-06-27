@@ -82,7 +82,7 @@
                     <td>{{ $v->owrite }}</td>
 	                <td>
 	                	<a href="/admin/orders/{{ $v->id }}/edit" class="btn btn-warning">修改</a>
-	              
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

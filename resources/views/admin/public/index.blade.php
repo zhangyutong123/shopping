@@ -75,8 +75,8 @@
                         Hello! {{ session('admin_userinfo')->uname }}
                     </div>
                     <ul>
-                    	<li><a href="javascript:;" onclick="chagneprofile({{ session('admin_userinfo')->id }})">修改头像</a></li>
-                        <li><a href="javascript:;" onclick="chagneprofile({{ session('admin_userinfo')->id }})">修改密码</a></li>
+                    	<li><a href="/admin/upfile">修改头像</a></li>
+                        <li><a href="/admin/uppass">修改密码</a></li>
                         <li><a href="/admin/logout">退出</a></li>
                     </ul>
                 </div>

@@ -68,7 +68,7 @@
 						<form action="/admin/announce/{{ $v->id }}" method="post" style="display: inline-block;">
 							{{ csrf_field() }}
 							{{ method_field('DELETE') }}
-							<input type="submit" value="删除" class="btn btn-danger">
+							<input type="submit" value="删除" class="btn btn-danger" onclick="return confirm('确认要删除么?')">
 						</form>
                     </td>
                 </tr>

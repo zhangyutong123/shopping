@@ -6,7 +6,7 @@
             <span>特价商品添加</span>
         </div>
         <div class="mws-panel-body no-padding">
-            <form class="mws-form" action="/goods_cheap/{{ $goods_cheap->id }}" method="post" enctype="multipart/form-data">
+            <form class="mws-form" action="/admin/goods_cheap/{{ $goods_cheap->id }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
                 <div class="mws-form-inline">

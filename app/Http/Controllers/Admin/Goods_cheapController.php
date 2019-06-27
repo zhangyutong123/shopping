@@ -14,12 +14,15 @@ class Goods_cheapController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
-        $goods_cheap = Goods_cheap::all();
+        // 接收搜索的参数
+        $search_chname = $request->input('search_chname','');
+
+        $goods_cheap = Goods_cheap::where('gcname','like','%'.$search_chname.'%')->paginate(5);
         
         //加载html页面
-        return view('admin.goods_cheap.index',['goods_cheap'=>$goods_cheap]);
+        return view('admin.goods_cheap.index',['goods_cheap'=>$goods_cheap,'params'=>$request->all()]);
     }
 
     /**
@@ -47,19 +50,6 @@ class Goods_cheapController extends Controller
         }else{
             return back()->with('error','请选择图片');
         }
-
-        //验证表单
-        // $this->validate($request,[
-        //     'gcname' => 'required',
-        //     'gcprice' => 'required',
-        //     'gprice' => 'required',
-        //     'gcsize' => 'required',
-        // ],[
-        //     'gcname.required' => '特价商品名称必填',
-        //     'gcprice.required' => '特价商品价格必填',
-        //     'gprice.required' => '特价商品原价必填',
-        //     'gcsize.required' => '特价商品尺码必填',
-        // ]);
 
         //接收数据
         $data['gcname'] = $request->input('gcname','');
@@ -144,7 +134,7 @@ class Goods_cheapController extends Controller
         $res = DB::table('goods_cheap')->where('id',$id)->update($data);
 
         if($res){
-            return redirect('/goods_cheap')->with('success','修改成功');
+            return redirect('/admin/goods_cheap')->with('success','修改成功');
         }else{
             return back()->with('error','修改失败');
         }
@@ -165,7 +155,7 @@ class Goods_cheapController extends Controller
         //删除
         $res = DB::table('goods_cheap')->where('id',$id)->delete();
         if($res){
-            return redirect('/goods_cheap')->with('success','删除成功');
+            return redirect('/admin/goods_cheap')->with('success','删除成功');
         }else{
             return back()->with('error','修改失败');
         }

@@ -34,15 +34,14 @@
 
 @section('content')
 
-<!-- 搜索 -->
+<!-- 搜索 start -->
 <br />
 <form action="/admin/users" method="get">
 	用户名： <input type="text" name="search_uname" value="{{ $params['search_uname'] or '' }}">
-
-    邮箱： <input type="text" name="search_email" value="{{ $params['search_email'] or ''}}">
 	        <input type="submit" class="btn btn-info" value="搜索">
 </form>
 <br />
+<!-- 搜索 end -->
 <div class="mws-panel grid_8">
 	<div class="mws-panel-header">
     	<span><i class="icon-table"></i> 用户列表</span>
@@ -53,7 +52,6 @@
                 <tr>
                     <th>ID</th>
                     <th>用户名</th>
-                    <th>权限</th>
                     <th>邮箱</th>
                     <th>手机号</th>
                     <th>头像</th>
@@ -66,15 +64,6 @@
                 <tr>
                     <td>{{ $v->id }}</td>
                     <td>{{ $v->uname }}</td>
-                    <td>
-                        @if ($v->type == 0)
-                            <span style="color: red;">超级管理员</span>
-                        @elseif ($v->type == 1)
-                            <span style="color: orange;">管理员</span>
-                        @elseif ($v->type == 2)
-                            <span style="color: black; font-weight: bold;">普通会员</span>
-                        @endif
-                    </td>
                     <td>{{ $v->userinfo->email }}</td>
                     <td>{{ $v->userinfo->tel }}</td>
                     <td>
@@ -86,7 +75,7 @@
 						<form action="/admin/users/{{ $v->id }}" method="post" style="display: inline-block;">
 							{{ csrf_field() }}
 							{{ method_field('DELETE') }}
-							<input type="submit" value="删除" class="btn btn-danger">
+							<input type="submit" value="删除" class="btn btn-danger" onclick="return confirm('确认要删除么?')">
 						</form>
                     </td>
                 </tr>
@@ -94,8 +83,10 @@
             </tbody>
         </table>
     </div>
+    <!-- 分页 start -->
     <div id="page_page" style="margin-left: 900px;">
             {{ $users->appends($params)->links() }}
     </div>
+    <!-- 分页 end -->
 </div>
 @endsection

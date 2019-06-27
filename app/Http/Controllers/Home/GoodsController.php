@@ -25,10 +25,5 @@ class GoodsController extends Controller
         return view('home.goods.goods_info',['data'=>$data,'datas'=>$datas,'cates_data'=>$cates_data]);
     }
 
-    public function car(Request $request){
-    	$id = $request->input('id');
-    	
-    	return view('home.cars.index');
-    }
     
 }

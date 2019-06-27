@@ -65,18 +65,18 @@
                     	<img style=" border:1px solid #ccc;width: 200px;" src="/uploads/{{ $v->url}}">
                     </td>
                     <td>
-                            @php
-                                $arr=['已关闭','已开启'];
-                            @endphp
-                            <a href="/admin/banners/{{$v->id}}" class='btn'>{{$arr[$v->status]}}</a>
-
+                        @if($v->status == 0)
+                        <span href="" style="color: black">已开启</span>
+                        @elseif($v->status == 1)
+                        <span style="color: gray">未开启</span>
+                        @endif
                     </td>
                     <td>
 						<a href="/admin/banners/{{ $v->id }}/edit" class="btn btn-warning">修改</a>
 						<form action="/admin/banners/{{ $v->id }}" method="post" style="display: inline-block;">
 							{{ csrf_field() }}
 							{{ method_field('DELETE') }}
-							<input type="submit" value="删除" class="btn btn-danger">
+							<input type="submit" value="删除" class="btn btn-danger" onclick="return confirm('确认要删除么?')">
 						</form>
                     </td>
                 </tr>

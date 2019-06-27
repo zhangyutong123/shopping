@@ -8,6 +8,7 @@ use App\Http\Requests\StoreUsers;
 use App\Models\Users;
 use App\Models\UsersInfo;
 use Hash;
+use Storage;
 use DB;
 class UsersController extends Controller
 {
@@ -105,7 +106,7 @@ class UsersController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 显示修改用户页面
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -169,12 +170,8 @@ class UsersController extends Controller
          DB::beginTransaction();
         $res1 = Users::destroy($id);
         $res2 = UsersInfo::where('uid',$id)->delete();
-        // 删除用户头像
-        /*
-            use Illuminate\Support\Facades\Storage;
-            Storage::delete('file.jpg');
-            Storage::delete(['file1.jpg', 'file2.jpg']);
-         */
+
+        // Storage::delete($res2->profile);
         if($res1 && $res2){
             DB::commit();
             return redirect('admin/users')->with('success','删除成功');

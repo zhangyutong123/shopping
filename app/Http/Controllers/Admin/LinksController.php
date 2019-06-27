@@ -14,12 +14,15 @@ class LinksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
-        $links = Links::all();
+        // 接收搜索的参数
+        $search_lname = $request->input('search_lname','');
+
+        $links = Links::where('lname','like','%'.$search_lname.'%')->paginate(5);
         
         //加载html页面
-        return view('admin.links.index',['links'=>$links]);
+        return view('admin.links.index',['links'=>$links,'params'=>$request->all()]);
     }
 
     /**
@@ -100,7 +103,7 @@ class LinksController extends Controller
         $res = DB::table('links')->update($data);
 
         if($res){
-            return redirect('/links')->with('success','修改成功');
+            return redirect('/admin/links')->with('success','修改成功');
         }else{
             return back()->with('error','修改失败');
         }
@@ -121,7 +124,7 @@ class LinksController extends Controller
         $res = DB::table('links')->where('id',$id)->delete();
         
         if($res){
-            return redirect('/links')->with('success','删除成功');
+            return redirect('/admin/links')->with('success','删除成功');
         }else{
             return back()->with('error','修改失败');
         }

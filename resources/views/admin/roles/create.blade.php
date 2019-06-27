@@ -22,7 +22,7 @@
     				<div class="mws-form-item clearfix">
     					<ul class="mws-form-list inline small">
     						@foreach($list as $k=>$v)
-    						<h3>{{ $conall[$k] }} <small>{{ $k }}</small> </h3>
+    						<h4>{{ $conall[$k] }} <small>{{ $k }}</small> </h4>
 	    						@foreach($v as $kk=>$vv)
 	    						<li><input type="checkbox" name="nids[]" value="{{ $vv['id'] }}"> <label>{{ $vv['desc'] }}</label></li>
 	    						@endforeach
@@ -32,8 +32,8 @@
     			</div>
     		</div>
     		<div class="mws-button-row">
-    			<input type="submit" value="Submit" class="btn btn-danger">
-    			<input type="reset" value="Reset" class="btn ">
+    			<input type="submit" value="添加" class="btn btn-danger">
+    			<input type="reset" value="重置" class="btn ">
     		</div>
     	</form>
     </div>    	

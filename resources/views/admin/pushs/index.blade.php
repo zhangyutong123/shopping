@@ -50,22 +50,32 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>推荐商品名称</th>
-                    <th>推荐商品图片</th>
-                    <th>推荐商品价格</th>
+                    <th>标题</th>
+                     <th>父级ID</th>
+                     <th>路径</th>
+                    <th>图片</th>
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody>
+            	@foreach($data as $k=>$v)
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $v->id }}</td>
                     <td>
-                    	<img style=" border:1px solid #ccc;width: 200px;" src="">
+					  	@if($v->pid == 0)
+					  		<span style="font-weight: bold;">{{ $v->pname }}</span>
+					  	@else
+					  		<span>{{ $v->pname }}</span>
+					  	@endif
+				    </td>
+					<td>{{ $v->pid }}</td>
+					<td>{{ $v->path }}</td>
+                    <td>
+                    	<img style=" border:1px solid #ccc;width: 200px;" src="/uploads/{{ $v->img }}">
                     </td>
                     <td></td>
                     <td>
-						<a href="" class="btn btn-warning">修改</a>
+                    	<a href="" class="btn btn-success">添加子商品</a>
 						<form action="" method="post" style="display: inline-block;">
 							{{ csrf_field() }}
 							{{ method_field('DELETE') }}
@@ -73,6 +83,7 @@
 						</form>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

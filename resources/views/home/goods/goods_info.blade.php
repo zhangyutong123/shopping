@@ -159,12 +159,18 @@
                 <div class="d_care"><a onclick="ShowDiv('MyDiv','fade')">关注商品</a></div>
             </div>
             <div class="des_join">
-            	<div class="j_nums">
-                	<input type="text" value="1" name="" class="n_ipt" />
-                    <input type="button" value="" onclick="addUpdate(jq(this));" class="n_btn_1" />
-                    <input type="button" value="" onclick="jianUpdate(jq(this));" class="n_btn_2" />   
-                </div>
-                <span class="fl"><a href="/home/cars?id={{ $v->id }}"><img src="/homes/images/j_car.png" /></a></span>
+                <form action="/home/car/car1" method="post">
+                    {{ csrf_field() }}
+                	<div class="j_nums">
+                        <input type="hidden" name="id" value="{{ $v->id }}">
+                        <input type="hidden" name="cid" value="{{ $v->cid }}">
+                    	<input type="text" value="1" name="num" class="n_ipt" />
+                        <input type="button" value="" onclick="addUpdate(jq(this));" class="n_btn_1" />
+                        <input type="button" value="" onclick="jianUpdate(jq(this));" class="n_btn_2" />   
+                    </div>
+                    <input type="submit" value="" style="width:180px;height:50px;cursor:pointer;background:url(/homes/images/j_car.png) "/>
+                </form>
+                <!-- <span class="fl"><a href="/home/cars?id={{ $v->id }}&cid={{ $v->cid }}"><img src="/homes/images/j_car.png" /></a></span> -->
             </div>            
         </div>    
         
