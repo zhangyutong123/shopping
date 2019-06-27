@@ -91,7 +91,7 @@ Route::group((['prefix'=>'home']),function(){
 	Route::get('index/index','Home\IndexController@index');
 	// 前台 分类
 	Route::resource('/cates','Home\CatesController');
-	// 商品详情
+	//商品详情
 	Route::get('/goods','Home\GoodsController@index');
 	//购物车路由
 	Route::get('/cars','Home\GoodsController@car');
@@ -123,6 +123,15 @@ Route::group((['prefix'=>'home']),function(){
 	Route::resource('/cart','Home\CartController');
 	// 前台 确认订单页
 	Route::get('cart/confirm','Home\CartController@confirm');	
+	//购物车中增加数量路由
+	Route::post('car/car1','Home\CartController@car1');
+	//清空购物车
+	Route::get('car/clear','Home\CartController@clear');
+	//购物车提交订单
+	Route::get('car/confirm','Home\CartController@confirm');
 });
+
+
+
 
 

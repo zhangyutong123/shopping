@@ -93,8 +93,9 @@
 </div>
 <!--End Menu End--> 
 
-<div id="center" style="margin-left: 310px; margin-right: 280px; clear: both; border: 1px solid red;">@foreach($datas as $k=>$v)
-    <div id="goods" style="width: 180px; height: 260px; border: 1px solid black; margin-right: 5px; margin-top: 10px; float: left;">
+<div id="center" style="margin-left: 310px; margin-right: 280px; clear: both;">
+    @foreach($datas as $k=>$v)
+    <div id="goods" style="width: 180px; height: 260px; margin-right: 5px; margin-top: 10px; float: left;">
         <div id="g-img" style="text-align: center;">
             <a href="/home/goods?id={{ $v->id }}&cid={{ $v->cid }}">
                 <img src="/uploads/{{ $v->pic }}" style="width: 150px; height: 150px;"></a></div>
@@ -110,9 +111,12 @@
         </div>
     </div>
     @endforeach
-    <div style="clear: both;"></div></div>
-
-
+    <div style="clear: both;"></div>
+    </div>
+    <div style="text-align: center;">
+        <span>到底了哦,再怎么着也没有了哦</span>
+    </div>
+    
 
 
 </body>
