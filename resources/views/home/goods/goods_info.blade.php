@@ -294,17 +294,39 @@
           	</div>  
             
             <div class="des_border" id="p_comment">
-            	<div class="des_t">商品评论</div>
-                
-                <table border="0" class="jud_tab" cellspacing="0" cellpadding="0">
+                <div class="des_t">商品评论</div>
+                <form action="/home/goods/hfeate" method="post">
+
+                    {{csrf_field()}}
+                    @foreach($datas as $k=>$v)
+                    <input type="hidden" id="gid" name="gid" value="{{$v->id}}"  />
+                    @endforeach
+                    <table border="0" class="jud_tab" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="175" class="jud_per">
+                           <textarea id="content" name="content" type="text" style="height: 100px; width: 920px;"></textarea>
+                        </td>
+                      </tr>
+                       <tr>
+                           <td>&nbsp;</td>
+                       </tr>
+                      <tr >
+                           <td align="center">
+                            <input style="width: 100px;height: 50px;" type="submit" value="提交" />
+                           </td>
+                      </tr>
+                    </table>
+                </form>
+
+                <table style=" margin-left: 100px;" border="0" class="jud_tab" cellspacing="0" cellpadding="0">
                   <tr>
                     <td width="175" class="jud_per">
-                    	<p>80.0%</p>好评度
+                        <p>80.0%</p>好评度
                     </td>
                     <td width="300">
-                    	<table border="0" style="width:100%;" cellspacing="0" cellpadding="0">
+                        <table border="0" style="width:100%;" cellspacing="0" cellpadding="0">
                           <tr>
-                            <td width="90">好评<font color="#999999">（80%）</font></td>
+                            <td width="90">好评<font color="#999999">（70%）</font></td>
                             <td><img src="/homes/images/pl.gif" align="absmiddle" /></td>
                           </tr>
                           <tr>
@@ -312,74 +334,39 @@
                             <td><img src="/homes/images/pl.gif" align="absmiddle" /></td>
                           </tr>
                           <tr>
-                            <td>差评<font color="#999999">（0%）</font></td>
+                            <td>差评<font color="#999999">（1%）</font></td>
                             <td><img src="/homes/images/pl.gif" align="absmiddle" /></td>
                           </tr>
                         </table>
                     </td>
                     <td width="185" class="jud_bg">
-                    	购买过雅诗兰黛第六代特润精华露50ml的顾客，在收到商品才可以对该商品发表评论
+                        购买过雅诗兰黛第六代特润精华露50ml的顾客，在收到商品才可以对该商品发表评论
                     </td>
-                    <td class="jud_bg">您可对已购买商品进行评价<br /><a href="#"><img src="/homes/images/btn_jud.gif" /></a></td>
+                   
                   </tr>
                 </table>
                 
-                
-                				
-                <table border="0" class="jud_list" style="width:100%; margin-top:30px;" cellspacing="0" cellpadding="0">
+               @foreach($hf_data as $k=>$v)
+                                
+                <table  border="0" class="jud_list" style=" margin-left: 100px; width:100%; margin-top:30px;" cellspacing="0" cellpadding="0">
                   <tr valign="top">
-                    <td width="160"><img src="/homes/images/peo1.jpg" width="20" height="20" align="absmiddle" />&nbsp;向死而生</td>
-                    <td width="180">
-                    	颜色分类：<font color="#999999">粉色</font> <br />
-                        型号：<font color="#999999">50ml</font>
-                    </td>
+                    <td width="160"><img src="" width="20" height="20" align="absmiddle" />&nbsp;{{ session('home_userinfo')->uname }}</td>
+                    
                     <td>
-                    	产品很好，香味很喜欢，必须给赞。 <br />
-                        <font color="#999999">2015-09-24</font>
+                        {{$v->content}} <br />
+                        <font color="#999999">{{$v->ctime}}</font>
                     </td>
                   </tr>
-                  <tr valign="top">
-                    <td width="160"><img src="/homes/images/peo2.jpg" width="20" height="20" align="absmiddle" />&nbsp;就是这么想的</td>
-                    <td width="180">
-                    	颜色分类：<font color="#999999">粉色</font> <br />
-                        型号：<font color="#999999">50ml</font>
-                    </td>
-                    <td>
-                    	送朋友，她很喜欢，大爱。 <br />
-                        <font color="#999999">2015-09-24</font>
-                    </td>
-                  </tr>
-                  <tr valign="top">
-                    <td width="160"><img src="/homes/images/peo3.jpg" width="20" height="20" align="absmiddle" />&nbsp;墨镜墨镜</td>
-                    <td width="180">
-                    	颜色分类：<font color="#999999">粉色</font> <br />
-                        型号：<font color="#999999">50ml</font>
-                    </td>
-                    <td>
-                    	大家都说不错<br />
-                        <font color="#999999">2015-09-24</font>
-                    </td>
-                  </tr>
-                  <tr valign="top">
-                    <td width="160"><img src="/homes/images/peo4.jpg" width="20" height="20" align="absmiddle" />&nbsp;那*****洋 <br /><font color="#999999">（匿名用户）</font></td>
-                    <td width="180">
-                    	颜色分类：<font color="#999999">粉色</font> <br />
-                        型号：<font color="#999999">50ml</font>
-                    </td>
-                    <td>
-                    	下次还会来买，推荐。<br />
-                        <font color="#999999">2015-09-24</font>
-                    </td>
-                  </tr>
+                 
                 </table>
 
-                	
+                 @endforeach
                     
                 <div class="pages">
                     <a href="#" class="p_pre">上一页</a><a href="#" class="cur">1</a><a href="#">2</a><a href="#">3</a>...<a href="#">20</a><a href="#" class="p_pre">下一页</a>
                 </div>
                 
-          	</div>
+            </div>
             
             
         </div>

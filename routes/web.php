@@ -129,6 +129,10 @@ Route::group((['prefix'=>'home']),function(){
 	Route::get('car/clear','Home\CartController@clear');
 	//购物车提交订单
 	Route::get('car/confirm','Home\CartController@confirm');
+	//前台显示回复
+   Route::get('goods/hfdex','Home\GoodsController@hfdex');
+   //前台自行添加回复
+   Route::post('goods/hfeate','Home\GoodsController@hfeate');
 });
 
 
