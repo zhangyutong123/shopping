@@ -28,13 +28,11 @@
         </div>
     </div>
     <div class="b_nav">
-        <dl>                                                                                            
-            <dt><a href="#">新手上路</a></dt>
-            <dd><a href="#">售后流程</a></dd>
-            <dd><a href="#">购物流程</a></dd>
-            <dd><a href="#">订购方式</a></dd>
-            <dd><a href="#">隐私声明</a></dd>
-            <dd><a href="#">推荐分享说明</a></dd>
+          <dl>  
+            <dt><a href="#">友情链接</a></dt>
+		@foreach($links_data as $k=>$v)                                                                                     
+            <dd><a href="{{$v->url}}">{{$v->lname}}</a></dd>
+        @endforeach
         </dl>
         <dl>
             <dt><a href="#">配送与支付</a></dt>

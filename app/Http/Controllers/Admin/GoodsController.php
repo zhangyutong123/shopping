@@ -49,6 +49,15 @@ class GoodsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'gname' => 'required',
+            'price' => 'required',
+            'brand' => 'required'
+        ],[
+            'gname.required'=>'请输入商品名称!',
+            'price.required'=>'请输入商品价格!',
+            'brand.required'=>'请输入商品品牌!'
+        ]);
 
         //检测文件上传
         if($request->hasFile('pic')){

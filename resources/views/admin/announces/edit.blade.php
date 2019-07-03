@@ -39,7 +39,7 @@
                     <div class="mws-form-row">
                         <label class="mws-form-label">公告内容</label>
                         <div class="mws-form-item">
-                            <textarea name="acontent" id="" cols="80" rows="60">{{ $announce->acontent }}</textarea>
+                            <script style="height: 100px;" id="content" name="acontent" type="text/plain">{{ $announce->acontent }}</script>
                         </div>
                     </div>
         		</div>
@@ -50,4 +50,16 @@
         	</form>
         </div>    	
     </div>
+    
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="/utf8-php/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/utf8-php/ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('content',{toolbars: [
+                    ['fullscreen', 'source', 'undo', 'redo', 'bold','emotion','spechars', 'fontfamily',  'fontsize','simpleupload','insertimage','time','date','insertvideo','music']
+        ]});
+    </script>   
+
 @endsection

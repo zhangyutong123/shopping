@@ -185,14 +185,6 @@
                         </ul>
                     </li>
 
-                    <li class="active">
-                        <a href="#"><i class="icon-th"></i> 推荐位管理</a>
-                        <ul>
-                            <li><a href="/admin/pushs">推荐位列表</a></li>
-                        </ul>
-                    </li>
-
-
                      <li class="active">
                         <a href="#"><i class="icon-users"></i> 订单管理</a>
                         <ul>

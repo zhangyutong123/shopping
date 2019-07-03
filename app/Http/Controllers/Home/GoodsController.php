@@ -13,24 +13,33 @@ use  DB;
 class GoodsController extends Controller
 {
     //商品详情
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
-    	$id = $request->input('id');
-    	$cid = $request->input('cid');
+      	$id = $request->input('id');
+      	$cid = $request->input('cid');
 
-    	$data = Goods::where('id',$id)->where('status',1)->get();
+
+      	$data = Goods::where('id',$id)->where('status',1)->get();
 
         $datas = Goods::where('cid',$cid)->get();
         
         $cates_data = Cates::get();
 
+        //接收搜索参数
+        $search = $request->input('search','');
+
         //前台显示回复
-        // $hf_data = Replys::get()->orderby('ctime','desc');
         $hf_data = DB::table('replys')->orderby('ctime','desc')->get();
 
+         //友情链接
+        $links_data = DB::table('links')->where('status',1)->get();
+
         //
-        return view('home.goods.goods_info',['data'=>$data,'datas'=>$datas,'cates_data'=>$cates_data,'hf_data'=>$hf_data]);
+        return view('home.goods.goods_info',['data'=>$data,'search'=>$search,'datas'=>$datas,'cates_data'=>$cates_data,'hf_data'=>$hf_data,'links_data'=>$links_data]);
     }
+
+    
 
     // public function car(Request $request){
     //     $id = $request->input('id');

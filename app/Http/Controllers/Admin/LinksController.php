@@ -78,11 +78,6 @@ class LinksController extends Controller
      */
     public function edit(Request $request)
     {
-        //接收数据
-        $id = $request->input('id',0);
-        $links =Links::where('id',$id)->first();
-
-        return view('admin.links.edit',['links'=>$links]);
         
     }
 
@@ -95,18 +90,7 @@ class LinksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //接收数据
-        $data['lname'] = $request->input('lname','');
-        $data['url'] = $request->input('url','');
 
-        //执行 添加到数据库
-        $res = DB::table('links')->update($data);
-
-        if($res){
-            return redirect('/admin/links')->with('success','修改成功');
-        }else{
-            return back()->with('error','修改失败');
-        }
     }
 
     /**
@@ -126,7 +110,7 @@ class LinksController extends Controller
         if($res){
             return redirect('/admin/links')->with('success','删除成功');
         }else{
-            return back()->with('error','修改失败');
+            return back()->with('error','删除失败');
         }
     }
 }

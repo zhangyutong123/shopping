@@ -55,9 +55,15 @@ class CatesController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'cname' => 'required',
+        ],[
+            'cname.required'=>'请输入分类名称!',
+        ]);
+
         //获取pid
         $pid = $request->input('pid',0);
-
 
         if($pid == 0){
             $path = 0;
@@ -142,16 +148,6 @@ class CatesController extends Controller
      */
     public function destroy(Request $request)
     {
-        //接收id
-        $id = $request->input('id',0);
 
-        //删除
-        $res = DB::table('cates')->where('id',$id)->delete();
-
-        if($res){
-            return redirect('/admin/cates')->with('success','删除成功');
-        }else{
-            return back()->with('error','修改失败');
-        }
     }
 }

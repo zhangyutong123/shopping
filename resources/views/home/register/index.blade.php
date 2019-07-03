@@ -37,6 +37,16 @@
 
 							<div class="am-tabs-bd">
 								<div class="am-tab-panel am-active">
+									<!-- 显示 错误 -->
+										@if (count($errors) > 0)
+										    <div class="alert alert-danger">
+										        <ul>
+										            @foreach ($errors->all() as $error)
+										                <li>{{ $error }}</li>
+										            @endforeach
+										        </ul>
+										    </div>
+										@endif
 								  <form method="post" action="/home/register/insert">
 								  	{{ csrf_field() }}
 								    <div class="user-email">
@@ -59,7 +69,7 @@
 									</div>
 								  </form>
 								</div>
-
+                                 <script></script>
 								<div class="am-tab-panel">
 										<!-- 显示 错误 -->
 										@if (count($errors) > 0)

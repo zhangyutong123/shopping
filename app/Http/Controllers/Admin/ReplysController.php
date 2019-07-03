@@ -10,7 +10,7 @@ use DB;
 class ReplysController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 显示评论
      *
      * @return \Illuminate\Http\Response
      */
@@ -19,7 +19,6 @@ class ReplysController extends Controller
         $search_uid = $request->input('search_uid','');
         $replys= Replys::where('uid','like','%'.$search_uid.'%')->paginate(5);
         // 加载页面
-
         return view('admin.replys.index',['replys'=>$replys,'params'=>$request->all()]);
     }
 

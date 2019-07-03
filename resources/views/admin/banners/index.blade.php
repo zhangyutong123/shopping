@@ -65,9 +65,9 @@
                     	<img style=" border:1px solid #ccc;width: 200px;" src="/uploads/{{ $v->url}}">
                     </td>
                     <td>
-                        @if($v->status == 0)
+                        @if($v->status == 1)
                         <span href="" style="color: black">已开启</span>
-                        @elseif($v->status == 1)
+                        @elseif($v->status == 0)
                         <span style="color: gray">未开启</span>
                         @endif
                     </td>

@@ -20,11 +20,9 @@ class AdminuserController extends Controller
 
         // 查询管理员表
         $data = DB::table('admin_users')->where('uname','like','%'.$search_auname.'%')->paginate(5);
-        $roles_data = DB::table('roles')->get();
-        
         
         // 加载后台页面
-        return view('admin.adminuser.index',['data'=>$data,'roles_data'=>$roles_data,'params'=>$request->all()]);
+        return view('admin.adminuser.index',['data'=>$data,'params'=>$request->all()]);
 
     }
 
@@ -52,6 +50,20 @@ class AdminuserController extends Controller
      */
     public function store(Request $request)
     {
+        // 数据验证
+
+        $this->validate($request, [
+            'uname' => 'required',
+            'upass' => 'required',
+            'repass' => 'required',
+            'rid' => 'required',
+        ],[
+            'uname.required'=>'请填写用户名称!',
+            'upass.required'=>'请填写密码!',
+            'repass.required'=>'请确认密码!',
+            'rid.required'=>'请选择角色!',
+        ]);
+
         // 开启事务
         DB::beginTransaction();
 
@@ -61,16 +73,16 @@ class AdminuserController extends Controller
         $repass = $request->input('repass',''); 
         $rid = $request->input('rid',''); 
 
-        // 判断密码是否一致
-        if($upass != $repass){
-            return back()->width('error','俩次密码不一致');
-        }
-
-        // 文件上传
+        // 上传图片
         if($request->hasFile('profile')){
             $path = $request->file('profile')->store(date('Ymd'));
         }else{
             $path = '';
+        }
+
+        // 判断密码是否一致
+        if($upass != $repass){
+            return back()->with('error','俩次密码不一致');
         }
 
         // 把数据赋值给数据并且添加到到管理员表中
@@ -112,7 +124,14 @@ class AdminuserController extends Controller
      */
     public function edit($id)
     {
+        // // 获取数据库信息
+        // $adminuser = Adminuser::find($id);
+        // // 获取所有角色
+        // $roles_data = DB::table('roles')->get();
 
+        // $adminrol = DB::table('adminusers_roles')->where('uid',$id)->first();
+        // // 加载修改页面
+        // return view('admin.adminuser.edit',['adminuser'=>$adminuser,'roles_data'=>$roles_data,'adminrol'=>$adminrol]);
     }
 
     /**
@@ -124,7 +143,31 @@ class AdminuserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // // 获取头像
+        // if ($request->hasFile('profile')) {
+
+        //     // 删除以前旧的图片
+        //     Storage::delete($request->input('old_profile'));
+
+        //     $file_path = $request->file('profile')->store(date('Ymd'));
+        // }else{
+        //     $file_path = $request->input('old_profile');
+        // }
+
+        // $rid = $request->input('rid','');
+
+        // $adminuser = DB::table('admin_users')::find($id);
+        // $adminuser['profile'] = $file_path;
+
+        // $uid = $adminuser->save();
+        // $res = DB::table('adminusers_roles')->update(['uid'=>$uid,'rid'=>$rid]);
+
+        // if($uid && $res){
+        //     return redirect('admin/adminuser')->with('success','修改成功');
+        // }else{
+
+        //     return back()->with('error','修改失败');
+        // }
     }
 
     /**

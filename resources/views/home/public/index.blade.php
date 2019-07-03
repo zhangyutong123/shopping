@@ -44,15 +44,11 @@
         </div>  
         <!--End 商品分类详情 End-->  
         <!--End 商品分类详情 End-->                                                     
-        <ul class="menu_r">                                                                                                                                               
-            <li><a href="Index.html">首页</a></li>
-            <li><a href="Food.html">美食</a></li>
-            <li><a href="Fresh.html">生鲜</a></li>
-            <li><a href="HomeDecoration.html">家居</a></li>
-            <li><a href="SuitDress.html">女装</a></li>
-            <li><a href="MakeUp.html">美妆</a></li>
-            <li><a href="Digital.html">数码</a></li>
-            <li><a href="GroupBuying.html">团购</a></li>
+        <ul class="menu_r">                                                                                                                                
+            <li style="width: 150px; margin-left: 80px;"><a href="/">首&nbsp;页</a></li>
+            <li style="width: 150px;"><a href="Food.html">热门商品</a></li>
+            <li style="width: 150px;"><a href="Fresh.html">推荐商品</a></li>
+            <li style="width: 150px;"><a href="HomeDecoration.html">猜你喜欢</a></li>
         </ul>
         <div class="m_ad"></div>
     </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Goods;
 use App\Models\Cates;
+use DB;
 
 class CatesController extends Controller
 {
@@ -42,20 +43,26 @@ class CatesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 商品列表
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-        $datas = Goods::where('cid',$id)->where('status',1)->get();
 
+    public function show(request $request,$id)
+    {
+        //接收搜索参数
+        $search = $request->input('search','');
+        
+        //
+        $datas = Goods::where('cid',$id)->where('status',1)->paginate(5);
         $cates_data = Cates::get();
 
+         //友情链接
+        $links_data = DB::table('links')->where('status',1)->get();
+        
         //加载页面
-        return view('home.cates.index',['datas'=>$datas,'cates_data'=>$cates_data]);
+        return view('home.cates.index',['links_data'=>$links_data,'datas'=>$datas,'search'=>$search,'cates_data'=>$cates_data]);
     }
 
     /**

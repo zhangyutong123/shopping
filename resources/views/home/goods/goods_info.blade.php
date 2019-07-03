@@ -350,7 +350,7 @@
                                 
                 <table  border="0" class="jud_list" style=" margin-left: 100px; width:100%; margin-top:30px;" cellspacing="0" cellpadding="0">
                   <tr valign="top">
-                    <td width="160"><img src="" width="20" height="20" align="absmiddle" />&nbsp;{{ session('home_userinfo')->uname }}</td>
+                    <td width="160"><img src="" width="20" height="20" align="absmiddle" />&nbsp;123</td>
                     
                     <td>
                         {{$v->content}} <br />

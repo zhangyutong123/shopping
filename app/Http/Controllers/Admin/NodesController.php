@@ -19,7 +19,7 @@ class NodesController extends Controller
        $search_dname = $request->input('search_dname','');
 
        // 获取数据库中的数据(根据权限名称进行搜索操作)
-       $data = DB::table('nodes')->where('desc','like','%'.$search_dname.'%')->paginate(5);
+       $data = DB::table('nodes')->where('desc','like','%'.$search_dname.'%')->paginate(30);
         // 加载模板
         return view('admin.nodes.index',['data'=>$data,'params'=>$request->all()]);
     }
@@ -43,11 +43,22 @@ class NodesController extends Controller
      */
     public function store(Request $request)
     {
+        // 数据验证
+        $this->validate($request, [
+            'cname' => 'required',
+            'aname' => 'required',
+            'desc' => 'required',
+        ],[
+            'cname.required'=>'请填写控制器名称',
+            'aname.required'=>'请填写方法名',
+            'desc.required'=>'请填写权限名称',
+        ]);
+
         // 接收表单中的数据
-        $cname = $request->input('cname');
+        $cname = $request->input('cname','');
         $controller = $cname.'controller';
-        $aname = $request->input('aname');
-        $desc = $request->input('desc');
+        $aname = $request->input('aname','');
+        $desc = $request->input('desc','');
 
         // 执行添加操作
         $res = DB::table('nodes')->insert(['cname'=>$controller,'aname'=>$aname,'desc'=>$desc]);
@@ -74,26 +85,39 @@ class NodesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 权限修改
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        //接收数据
+        $nodes = DB::table('nodes')->find($id);
+        return view('admin.nodes.edit',['nodes'=>$nodes]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * 权限执行修改
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        //接收数据
+        $data['desc'] = $request->input('desc','');
+        $data['cname'] = $request->input('cname','');
+        $data['aname'] = $request->input('aname','');
+
+        //执行 添加到数据库
+        $res = DB::table('nodes')->where('id',$id)->update($data);
+        if($res){
+            return redirect('/admin/nodes')->with('success','修改成功');
+        }else{
+            return back()->with('error','修改失败');
+        }
     }
 
     /**

@@ -62,7 +62,7 @@
                     <td>{{ $v->id }}</td>
                     <td>{{ $v->aname }}</td>
                     <td>{{ $v->alabel }}</td>
-                    <td>{{ $v->acontent }}</td>
+                    <td><p style="">{!! $v->acontent !!}</p></td>
                     <td>
 						<a href="/admin/announce/{{ $v->id }}/edit" class="btn btn-warning">修改</a>
 						<form action="/admin/announce/{{ $v->id }}" method="post" style="display: inline-block;">

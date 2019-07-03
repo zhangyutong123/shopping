@@ -34,6 +34,21 @@
     <script type="text/javascript" src="/homes/js/shade.js"></script>
     
 <title>尤洪</title>
+<style>
+    #abc{
+        display: inline-block;
+        padding: 0;
+        margin:0;
+        display: inline;
+        text-align: center;
+    }
+    #abc span,#abc a{
+          color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+    }
+</style>
 </head>
 <body>  
 <!--Begin Menu Begin-->
@@ -111,11 +126,10 @@
         </div>
     </div>
     @endforeach
-    <div style="clear: both;"></div>
+    <div style="clear: both;" ></div>
+    <div id="abc">{{ $datas->appends(['search'=>'search'])->links() }}</div>
     </div>
-    <div style="text-align: center;">
-        <span>到底了哦,再怎么着也没有了哦</span>
-    </div>
+   
     
 
 

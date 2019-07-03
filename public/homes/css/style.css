@@ -519,10 +519,10 @@ ul.menu_r li a:hover, ul.menu_r li a.now{
 	width:243px; height:228px; overflow:hidden; background:url(../images/line.gif) no-repeat right 122px; float:left; border-right:1px solid #eaeaea; position:relative;
 }
 .hot_pro #botton-scroll{
-	width:975px; height:228px; overflow:hidden; float:left; z-index:0;
+	width:1200px; height:228px; overflow:hidden; float:left; z-index:0;
 }
 .hot_pro #block{
-	width:975px; height:228px; overflow:hidden; position:relative; z-index:0;
+	width:1200px; height:228px; overflow:hidden; position:relative; z-index:0;
 }
 .hot_pro #block .box {
 	width:243px; height:228px; overflow:hidden; margin:0 auto; position:relative;

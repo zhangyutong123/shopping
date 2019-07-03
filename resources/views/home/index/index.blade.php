@@ -35,106 +35,51 @@
             </div>
             <ul>
                 @foreach($announces_data as $k=>$v)
+
             	<li>
-                    <span>[ {{ $v->alabel }} ]</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#">{{ $v->aname }}</a>
+                    <span class="hides">[ {{ $v->alabel }} ]</span>&nbsp;
+                    <a href="/home/index/show?id={{ $v->id }}" class="hides">{{ $v->aname }}</a>
                 </li>
                 @endforeach
             </ul>
         </div>
     </div>
+
     <!--Begin 热门商品 Begin-->
     <div class="content mar_10">
-    	<div class="h_l_img">
-        	<div class="img"><img src="/homes/images/l_img.jpg" width="188" height="188" /></div>
-            <div class="pri_bg">
-                <span class="price fl">￥53.00</span>
-                <span class="fr">16R</span>
-            </div>
-        </div>
-        <div class="hot_pro">        	
-        	<div id="featureContainer">
-                <div id="feature">
-                    <div id="block">
-                        <div id="botton-scroll">
+        <div class="hot_pro" style="width: 1200px;">        	
+        	<div id="featureContainer" style="width: 1200px;">
+                <div id="feature" style="width: 1200px;">
+                    <div id="block" style="width: 1200px; margin: 0px;" >
+                        <div id="botton-scroll1" style="width: 1200px;">
                             <ul class="featureUL">
+                                @foreach($goods_hot as $k=>$v)
                                 <li class="featureBox">
                                     <div class="box">
                                     	<div class="h_icon"><img src="/homes/images/hot.png" width="50" height="50" /></div>
                                         <div class="imgbg">
-                                        	<a href="#"><img src="/homes/images/hot1.jpg" width="160" height="136" /></a>
+                                        	<a href="/home/goods?id={{ $v->id }}&cid={{ $v->cid }}"><img src="/uploads/{{ $v->pic }}" width="160" height="136" /></a>
                                         </div>                                        
                                         <div class="name">
                                         	<a href="#">
-                                            <h2>德国进口</h2>
-                                            德亚全脂纯牛奶200ml*48盒
+                                            <h2>{{ $v->brand }}</h2>
+                                            {{ $v->gname }}
                                             </a>
                                         </div>
                                         <div class="price">
-                                            <font>￥<span>189</span></font> &nbsp; 26R
+                                            <font>￥<span>{{ $v->price }}</span></font>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="featureBox">
-                                    <div class="box">
-                                        <div class="h_icon"><img src="/homes/images/hot.png" width="50" height="50" /></div>
-                                        <div class="imgbg">
-                                        	<a href="#"><img src="/homes/images/hot2.jpg" width="160" height="136" /></a>
-                                        </div>                                        
-                                        <div class="name">
-                                        	<a href="#">
-                                            <h2>iphone 6S</h2>
-                                            Apple/苹果 iPhone 6s Plus公开版
-                                            </a>
-                                        </div>
-                                        <div class="price">
-                                            <font>￥<span>5288</span></font> &nbsp; 25R
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="featureBox">
-                                    <div class="box">
-                                        <div class="h_icon"><img src="/homes/images/hot.png" width="50" height="50" /></div>
-                                        <div class="imgbg">
-                                        	<a href="#"><img src="/homes/images/hot3.jpg" width="160" height="136" /></a>
-                                        </div>                                        
-                                        <div class="name">
-                                        	<a href="#">
-                                            <h2>倩碧特惠组合套装</h2>
-                                            倩碧补水组合套装8折促销
-                                            </a>
-                                        </div>
-                                        <div class="price">
-                                            <font>￥<span>368</span></font> &nbsp; 18R
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="featureBox">
-                                    <div class="box">
-                                        <div class="h_icon"><img src="/homes/images/hot.png" width="50" height="50" /></div>
-                                        <div class="imgbg">
-                                        	<a href="#"><img src="/homes/images/hot4.jpg" width="160" height="136" /></a>
-                                        </div>                                        
-                                        <div class="name">
-                                        	<a href="#">
-                                            <h2>品利特级橄榄油</h2>
-                                            750ml*4瓶装组合 西班牙原装进口
-                                            </a>
-                                        </div>
-                                        <div class="price">
-                                            <font>￥<span>280</span></font> &nbsp; 30R
-                                        </div>
-                                    </div>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
-                    <a class="h_prev" href="javascript:void();">Previous</a>
-                    <a class="h_next" href="javascript:void();">Next</a>
                 </div>
             </div>
         </div>
     </div>
+
     <!--Begin 特价商品 Begin-->
     <div class="i_t mar_10">
     	<span class="fl">特价商品</span>
@@ -203,16 +148,20 @@
         </div>
     </div>
     <!--End 特价商品 End-->
+        
+    <!-- 广告 start -->
     <div class="content mar_20">
-    	<img src="/homes/images/mban_1.jpg" width="1200" height="110" />
+        <img src="/uploads/{{ $advs_data->url }}" width="1200" height="110" />
     </div>
-
-	<!--Begin 进口 生鲜 Begin-->
+    <!-- 广告 end -->
+    
+	<!-- 推荐商品列表部分 start-->
+    {{ $i = 1 }}
     @foreach($cates_data as $k=>$v)
-    @if(substr_count($v->path,',') < 1) 
+    @if($v->pid == 0)
     <div class="i_t mar_10">
-    	<span class="floor_num">1F</span>
-    	<span class="fl">进口 <b>·</b> 生鲜</span>        
+    	<span class="floor_num">{{ $i++ }}F</span>
+    	<span class="fl">{{ $v->cname }}</span>        
     </div>
     <div class="content">
         <!-- 左侧大图 -->
@@ -220,53 +169,52 @@
         	<div class="fre_ban">
             	<div id="imgPlay1">
                     <ul class="imgs" id="actor1">
-                        <li><a href="#"><img src="/homes/images/fre_r.jpg" width="211" height="286" /></a></li>
-                        <li><a href="#"><img src="/homes/images/fre_r.jpg" width="211" height="286" /></a></li>
-                        <li><a href="#"><img src="/homes/images/fre_r.jpg" width="211" height="286" /></a></li>
+                        <li><img src="/homes/images/fre_r.jpg" width="211" height="286" /></li>
                     </ul>
-                    <div class="prevf">上一张</div>
-                    <div class="nextf">下一张</div> 
                 </div>   
             </div>
             <!-- 文字部分 -->
             <div class="fresh_txt">
             	<div class="fresh_txt_c">
-                	<a href="#">{{ $v->cname }}</a>
+                     @foreach($cates_data as $kk=>$vv)
+                     @if($vv->pid == $v->id)
+                     @foreach($cates_data as $kkk=>$vvv)
+                     @if($vvv->pid == $vv->id)
+                     <a href="/home/cates/{{ $vvv->id }}?id={{ $vvv->id }}">{{ $vvv->cname }}</a>
+                     @endif
+                     @endforeach
+                     @endif
+                     @endforeach
                 </div>
             </div>
         </div>
-        <!-- 推荐商品列表部分 begin -->
         <div class="fresh_mid">
         	<ul>
-                @foreach($goods_push as $kk=>$vv)
-                @if ($vv->cid == $v->id)
+                @foreach($goods as $g=>$gg)
             	<li>
-                	<div class="name"><a href="#">{{ $vv->gname }}</a></div>
+                	<div class="name"><a href="#">{{ $gg->gname }}</a></div>
                     <div class="price">
-                    	<font>￥<span>{{ $vv->price }}</span></font>
+                    	<font>￥<span>{{ $gg->price }}</span></font>&nbsp;{{ $gg->brand }}
                     </div>
-                    <div class="img"><a href="#"><img src="/uploads/{{ $vv->pic }}" width="185" height="155" /></a></div>
+                    <div class="img"><a href="/home/goods?id={{ $gg->id }}&cid={{ $gg->cid }}"><img src="/uploads/{{ $gg->pic }}" width="185" height="155" /></a></div>
                 </li>
-                @endif
                 @endforeach
             </ul>
         </div>
-        <!-- 推荐商品列表部分 end -->
     </div>   
     @endif
-    @endforeach 
-<!--End 进口 生鲜 End-->
+    @endforeach
+    <!-- 推荐商品列表部分 end -->
 
- 
     <!--Begin 猜你喜欢 Begin-->
     <div class="i_t mar_10">
-    	<span class="fl">猜你喜欢</span>
-    </div>    
+        <span class="fl">猜你喜欢</span>
+    </div>  
     <div class="like">        	
         <div id="featureContainer1">
             <div id="feature1">
                 <div id="block1">
-                    <div id="botton-scroll1">
+                    <div id="botton-scroll1" style="width: 1200px;">
                         <ul class="featureUL">
                             <li class="featureBox">
                                 <div class="box">

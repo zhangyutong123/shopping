@@ -28,6 +28,16 @@
         					<input type="text" name="bname" class="small" value="{{ $banner->bname }}">
         				</div>
         			</div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">轮播图状态</label>
+                        <div class="mws-form-item">
+                             <select name="status">
+                                <option value="0" <?php if($banner->status == 0) echo 'selected'; ?> >未开启</option>
+                                <option value="1" <?php if($banner->status == 1) echo 'selected'; ?> >已开启</option>
+                             </select>
+                        </div>
+                    </div>
 			         	
 					<input type="hidden" name="old_url" value="{{ $banner->url }}">
                         <img src="/uploads/{{ $banner->url }}" style="margin-left: 180px;width: 200px;">

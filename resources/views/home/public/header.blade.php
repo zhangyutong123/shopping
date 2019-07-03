@@ -64,9 +64,10 @@
             <img style="width: 220px; height: 120px;" src="/homes/images/mty.jpg" />
         </a>
     </div>
+
     <div class="search">
-    	<form>
-        	<input type="text" value="" class="s_ipt" />
+    	<form action="/home/search/index" method="get">
+        	<input type="text" name="search" value="" class="s_ipt" placeholder="请输入搜索关键字" />
             <input type="submit" value="搜索" class="s_btn" />
         </form>                      
     </div>

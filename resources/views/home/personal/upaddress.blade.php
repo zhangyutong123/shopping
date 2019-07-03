@@ -15,13 +15,14 @@
 <!--End Header End--> 
 <div class="i_bg bg_color">
 <!--Begin 内容 Begin -->
+
 <div class="m_content" style="height: auto;">
 <!-- Begin 侧边栏 -->
 @include('home.public.sidebar')
 <!-- End 侧边栏 -->
     <div class="m_right">
         <div class="m_des">
-            <form action="/home/personal/doupaddress?id=$id" method="post" enctype="multipart/form-data">
+            <form action="/home/personal/doupaddress/{{ $address->id }}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
             <table border="0" style="width:880px;"  cellspacing="0" cellpadding="0">
               <input type="hidden" name="uid" value="{{ session('home_userinfo')->id }}" />

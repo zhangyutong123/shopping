@@ -42,7 +42,6 @@
                         @endif
                     </td>
                     <td>
-                        <a class="btn btn-info" href="/admin/links/{{ $v->id }}/edit?id={{ $v->id }}">修改</a>
                         <form action="/admin/links/{{ $v->id }}?id={{ $v->id }}" method="post" style="display: inline-block;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}

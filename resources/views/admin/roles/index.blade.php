@@ -1,5 +1,37 @@
 @extends('admin.public.index')
 
+@section('css')
+<style type="text/css">
+#page_page{
+    margin-top: 15px;
+}
+    #page_page ul,#page_page li{
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+    
+    #page_page a,#page_page span{
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            color: #337ab7;
+            text-decoration: none;
+            background-color: #fff;
+            border: 1px solid #ddd;
+    }
+
+    #page_page .active span{
+        color:#fff;
+        background-color: #40C088;
+    }
+
+
+</style>
+@endsection
+
 @section('content')
 
 <!-- 搜索 -->
@@ -29,9 +61,13 @@
                         <td>{{ $v->id }}</td>
                         <td>{{ $v->rname }}</td>
                         <td>
-                            <a href="" class="btn btn-info">修改角色权限</a>
+                            <a href="/admin/roles/{{ $v->id }}/edit?id={{ $v->id }}" class="btn btn-info">修改角色权限</a>
                             &nbsp;&nbsp;&nbsp;
-                            <a href="" class="btn btn-danger">删除</a>
+                            <form action="/admin/roles/{{ $v->id }}?id={{ $v->id }}" method="post" style="display: inline-block;">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <input type="submit" value="删除" class="btn btn-danger" onclick="return confirm('确认要删除么?')">
+                        </form>
                         </td>
                     </tr>
                 @endforeach

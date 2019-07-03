@@ -70,6 +70,7 @@ Route::group(['prefix'=>'admin','middleware'=>['admin_login']], function(){
 	Route::resource('address','Admin\AddressController');
 	// 后台评价 路由
 	Route::resource('replys','Admin\ReplysController');
+
 });
 
 Route::get('/','Home\IndexController@index');
@@ -78,22 +79,24 @@ Route::get('/','Home\IndexController@index');
 // 前台路由
 Route::group((['prefix'=>'home']),function(){
 
-	 //前台注册 邮箱 手机号
+	 //前台 注册 邮箱/手机号
 	Route::get('register','Home\RegisterController@index');
 	Route::get('register/sendPhone','Home\RegisterController@sendPhone');
-	// 前台登录
+	// 前台 登录
 	Route::get('login/index','Home\LoginController@index');
-	Route::post('login/dologin','Home\LoginController@dologin');
+	// 前台 执行登录
 	Route::post('login/dologin','Home\LoginController@dologin');
 	// 前台 退出
 	Route::get('login/logout','Home\LoginController@logout');
 	// 前台 首页
 	Route::get('index/index','Home\IndexController@index');
+	// 前台 公告栏
+	Route::get('index/show','Home\IndexController@show');
 	// 前台 分类
 	Route::resource('/cates','Home\CatesController');
-	//商品详情
+	// 商品详情
 	Route::get('/goods','Home\GoodsController@index');
-	//购物车路由
+	// 购物车路由
 	Route::get('/cars','Home\GoodsController@car');
 	// 前台 个人中心 用户中心
 	Route::get('personal/index','Home\PersonalController@index');
@@ -118,21 +121,24 @@ Route::group((['prefix'=>'home']),function(){
 	// 前台 个人中心 收货地址修改
 	Route::get('personal/upaddress','Home\PersonalController@upaddress');
 	// 前台 个人中心 收货地址执行修改
-	Route::post('personal/doupaddress','Home\PersonalController@doupaddress');
+	Route::post('personal/doupaddress/{id}','Home\PersonalController@doupaddress');
 	// 前台 购物车页面
 	Route::resource('/cart','Home\CartController');
 	// 前台 确认订单页
 	Route::get('cart/confirm','Home\CartController@confirm');	
-	//购物车中增加数量路由
+	// 购物车中增加数量路由
 	Route::post('car/car1','Home\CartController@car1');
-	//清空购物车
+	// 清空购物车
 	Route::get('car/clear','Home\CartController@clear');
-	//购物车提交订单
+	// 购物车提交订单
 	Route::get('car/confirm','Home\CartController@confirm');
-	//前台显示回复
-   Route::get('goods/hfdex','Home\GoodsController@hfdex');
-   //前台自行添加回复
-   Route::post('goods/hfeate','Home\GoodsController@hfeate');
+	// 前台 显示回复
+    Route::get('goods/hfdex','Home\GoodsController@hfdex');
+    // 前台 自行添加回复
+    Route::post('goods/hfeate','Home\GoodsController@hfeate');
+    //前台 搜索
+    Route::get('search/index','Home\SearchController@index');
+
 });
 
 

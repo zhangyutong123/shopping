@@ -18,6 +18,8 @@ class CartController extends Controller
      */
     public function index(Request $request)
     {
+        $search = $request->input('search','');
+        $goods_data = Goods::where('gname','like','%'.$search.'%')->get();
         //获取传过来的值
         $id = $request->input('id');
         $num = $request->input('num');
@@ -53,7 +55,7 @@ class CartController extends Controller
                 
             }
             
-            return view('home.cart.index',['data'=>$data,'datas'=>$datas,'cates_data'=>$cates_data,'datas_c'=>$datas_c,'all'=>$all,'uid'=>$uid]);
+            return view('home.cart.index',['data'=>$data,'datas'=>$datas,'goods_data'=>$goods_data,'search'=>$search,'cates_data'=>$cates_data,'datas_c'=>$datas_c,'all'=>$all,'uid'=>$uid]);
         }else{
             return back()->with('error','添加失败,请稍后重试');
         }

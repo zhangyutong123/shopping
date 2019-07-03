@@ -116,9 +116,10 @@ class BannersController extends Controller
         }
 
         // 接收数据
-        $banner = Banners::first();
+        $banner = Banners::where('id',$id)->first();
         $banner->bname = $request->input('bname');
         $banner->url = $url;
+        $banner->status = $request->input('status');
         $banner->status = $request->input('status');
 
         // 保存数据

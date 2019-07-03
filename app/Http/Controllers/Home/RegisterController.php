@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Captcha;
 use Hash;
 use DB;
+use Mail;
+use App\Models\Users;
 
 class RegisterController extends Controller
 {
@@ -16,11 +18,79 @@ class RegisterController extends Controller
 	}
 
 	//执行邮箱
-	public function insert()
+	public function insert(Request $request)
 	{
+    	$upass = $request->input('upass');
+    	$repass = $request->input('repass');
+    	$email = $request->input('email');
+    
+        
+       $this->validate($request, [
+        'email' => 'required',
+            'upass' => 'required|regex:/^[\w]{6,18}$/',
+            'repass' => 'required|same:upass',
+        ],[
+          'email.required'=>'邮箱必填',
+            'upass.regex'=>'密码格式错误',
+            'upass.required'=>'密码必填',
+            'repass.required'=>'确认密码必填',
+            'repass.same'=>'俩次密码不一致',
+        ]);
+       
+    	//验证密码
+    	if($upass != $repass){
+    		echo "<script>alert('俩次密码不一致');location.href='/home/register'</script>";
+   			exit;
+    	}
 
-	}
+      $res = DB::table('users')->where('uname',$email)->first();
+        if(!empty($res)){
+          echo "<script>alert('该邮箱已经被注册过');location.href='/home/register'</script>";
+          exit;
+        }
+
+    	$token = str_random(30);
+    	$user = new Users;
+    	$user->upass = Hash::make($upass);
+    	$user->uname = $email;
+    	$user->token = $token;
+    	$res1 = $user->save();
+    	if($res1){
+	    	// 发送邮件
+	    	Mail::send('home.register.mail', ['id' => $user->id,'token'=>$token], function ($m) use ($email) {
+	    		// to 发送地址   subject  标题
+	            $s = $m->to($email)->subject('【LAMPoto】提醒邮件!');
+
+	            if($s){
+	            	echo "用户注册成功，请尽快完成激活";
+	            }
+	        });	
+	   }
+   }
 	
+
+	 // 激活 用户 （邮件）
+    public function changeStatus($id,$token)
+    {
+    	// echo "激活 ---- ".$id;
+    	$user = Users::find($id);
+    	// 验证token
+    	if($user->token != $token){
+    		dd('链接失效');
+    	}
+
+    	$user->status = 1;
+    	$user->token = str_random(30);
+
+    	if($user->save()){
+    		 echo "<script>alert('激活成功');location.href='/'</script>";
+    	}else{
+    		echo "<script>alert('激活失败');location.href='/'</script>";
+    	}
+
+    	
+    }
+
     // 发送手机号 验证码
     public function sendPhone(Request $request)
     {
@@ -114,8 +184,9 @@ class RegisterController extends Controller
 
 
    		// 接收数据
-   		 $uname = $request->input('phone','');
-    	 $upass = $request->input('upass','');
+   		 $uname = $request->input('phone');
+    	 $upass = $request->input('upass');
+
     	 $this->validate($request, [
     	 	'phone' => 'required',
             'upass' => 'required|regex:/^[\w]{6,18}$/',
@@ -127,23 +198,20 @@ class RegisterController extends Controller
             'repass.required'=>'确认密码必填',
             'repass.same'=>'俩次密码不一致',
         ]);
-    	 if($uname =="")
-    	 {
-    	 	echo "<script>alert('shoujihaobenengweikong');location.href='/home/register'</script>";
-    	 }
-         $rree = DB::table('users')->where('uname'=='$uname');
-        if($rree){
+         $rree = DB::table('users')->where('uname',$uname)->first();
+        if(!empty($rree)){
         	echo "<script>alert('该手机号已经被注册过');location.href='/home/register'</script>";
         	exit;
         }
    		// 压入到数据库
-   		 $data['uname'] = $request->input('phone','');
-         $data['upass'] = Hash::make($request->input('upass',''));
+       
+   		    $data['uname'] = $request->input('phone');
+         $data['upass'] = Hash::make($request->input('upass'));
          $res = DB::table('users')->insert($data);
          if($res){
-          	return redirect('home/index/login')->with('success','注册成功');
+          	 echo "<script>alert('注册成功');location.href='/home/login/index'</script>";
         }else{
-           return back()->with('error','注册失败请从新注册');
+           echo "<script>alert('注册失败');location.href='/home/register/index'</script>";
         }
    }
 }

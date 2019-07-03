@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Users;
 use App\Models\UsersInfo;
+use App\Models\Goods;
 use App\Models\Address;
 use App\Http\Requests\StoreUsers;
 use DB;
@@ -14,23 +15,29 @@ use Hash;
 class PersonalController extends Controller
 {
 	// 个人中心显示
-    public function index()
+    public function index(request $request)
     {
         // 获取当前用户的id
         $id = session('home_userinfo')->id;
         // 查询用户表
         $users_data = Users::get();
-        // 查询用户信息表
+        // 查询用户信息表 
         $users_info = Usersinfo::where('uid',$id)->first();
 
-    	return view('home.personal.index',['id'=>$id,'users_info'=>$users_info]);
+         //友情链接
+        $links_data = DB::table('links')->where('status',1)->get();
+
+    	return view('home.personal.index',['id'=>$id,'links_data'=>$links_data,'users_info'=>$users_info]);
     }
 
     // 修改密码页面
-    public function safe()
+    public function safe(request $request)
     {
+        //友情链接
+        $links_data = DB::table('links')->where('status',1)->get();
+
         // 加载修改密码页面
-    	return view('home.personal.safe');
+    	return view('home.personal.safe',['links_data'=>$links_data]);
     }
 
     public function dosafe(request $request)
@@ -78,13 +85,16 @@ class PersonalController extends Controller
     }
 
      // 订单页显示
-    public function order()
+    public function order(request $request)
     {
-    	return view('home.personal.order');
+       //友情链接
+        $links_data = DB::table('links')->where('status',1)->get();
+
+    	return view('home.personal.order',['links_data'=>$links_data]);
     }
 
      // 地址页显示
-    public function address()
+    public function address(request $request)
     {
         // 获取当前用户的id
         $id = session('home_userinfo')->id;
@@ -93,14 +103,20 @@ class PersonalController extends Controller
         // dd($address_data);
         $user = Address::where('uid',$id)->get();
         // dd($user->uname);
-
-    	return view('home.personal.address',['address_data'=>$address_data]);
+        
+        //友情链接
+        $links_data = DB::table('links')->where('status',1)->get();
+      
+    	return view('home.personal.address',['address_data'=>$address_data,'links_data'=>$links_data]);
     }
 
     // 添加地址页
-    public function addaddress()
+    public function addaddress(request $request)
     {
-        return view('home.personal.addaddress');
+        //友情链接
+        $links_data = DB::table('links')->where('status',1)->get();
+
+        return view('home.personal.addaddress',['links_data'=>$links_data]);
     }
 
     // 执行添加地址页
@@ -149,24 +165,29 @@ class PersonalController extends Controller
     {
         $id = $request->input('id');
         $address = Address::find($id);
-        // dd($address);
-        return view('home.personal.upaddress',['address'=>$address]);
+
+        //友情链接
+        $links_data = DB::table('links')->where('status',1)->get();
+
+        return view('home.personal.upaddress',['address'=>$address,'links_data'=>$links_data]);
     }
 
     // 执行修改
     public function doupaddress(request $request,$id)
     {
 
-        // 开启事务
-        DB::beginTransaction();
 
-         $address = Address::first();
+
+        // 开启事务
+         DB::beginTransaction();
+         $address = Address::find($id);
+        //  dd($address);
+         $address->id = $id;
          $address->uid = session('home_userinfo')->id;
          $address->aname = $request->input('aname');
          $address->aphone = $request->input('aphone');
          $address->province = $request->input('province');
          $address->code = $request->input('code');
-
          // 保存数据
          $result = $address->save();
 
@@ -208,7 +229,10 @@ class PersonalController extends Controller
         // 查询用户信息表
         $users_info = Usersinfo::where('uid',$id)->first();
 
-        return view('home.personal.upinfo',['user'=>$user,'users_info'=>$users_info]);
+        //友情链接
+        $links_data = DB::table('links')->where('status',1)->get();
+
+        return view('home.personal.upinfo',['user'=>$user,'users_info'=>$users_info,'links_data'=>$links_data]);
     }
 
     // 执行修改

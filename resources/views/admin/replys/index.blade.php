@@ -51,7 +51,6 @@
                     <th>ID</th>
                     <th>用户id</th>
                     <th>评论内容</th>
-                    <th>评论图片</th>
                     <th>评论时间</th>
                     <th>商品id</th>
                     <th>操作</th>
@@ -63,9 +62,6 @@
                 	<td>{{ $v->id }}</td>
                     <td>{{ $v->uid }}</td>
                     <td>{{ $v->content }}</td>
-                    <td>
-                    	<img style=" border:1px solid #ccc;width: 88px;" src="/uploads/{{ $v->profile}}">
-                    </td>
                      <td>{{ $v->ctime }}</td>
                      <td>{{ $v->gid }}</td>
 	                <td>
