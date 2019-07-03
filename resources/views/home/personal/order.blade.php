@@ -34,18 +34,28 @@
         <table border="0" class="order_tab" style="width:930px; text-align:center; margin-top: 50px; margin-bottom:30px;" cellspacing="0" cellpadding="0">
               <tr>                                                                                                                                                    
                 <td width="20%">订单号</td>
-                <td width="25%">下单时间</td>
-                <td width="15%">订单总金额</td>
+                <td width="25%">商品名称</td>
+                <td width="15%">订单单价</td>
                 <td width="25%">订单状态</td>
                 <td width="15%">操作</td>
               </tr>
+              @foreach($data as $k=>$v)
+              @foreach($goods[$v->id] as $kk=>$vv)
               <tr>
-                <td><font color="#ff4e00">2015092823056</font></td>
-                <td>2015-09-26   16:45:20</td>
-                <td>￥456.00</td>
+                <td><font color="#ff4e00">{{ $v->onumber }}</font></td>
+                <td>{{ $vv->gname }}</td>
+                <td>￥{{ $vv->price }}</td>
+                @if($v->status == 0)
                 <td>未发货</td>
+                @elseif($v->status == 1)
+                <td>已发货</td>
+                @else
+                <td>已收货</td>
+                @endif
                 <td><a>删除订单</a></td>
               </tr>
+              @endforeach
+              @endforeach
             </table>
 
 

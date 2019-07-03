@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Users;
+use App\Models\Orders;
+use App\Models\Goods;
 use App\Models\UsersInfo;
 use App\Models\Address;
 use App\Http\Requests\StoreUsers;
 use DB;
 use Hash;
+
 
 class PersonalController extends Controller
 {
@@ -20,7 +23,7 @@ class PersonalController extends Controller
         $id = session('home_userinfo')->id;
         // 查询用户表
         $users_data = Users::get();
-        // 查询用户信息表
+        // 查询用户信息表 
         $users_info = Usersinfo::where('uid',$id)->first();
 
     	return view('home.personal.index',['id'=>$id,'users_info'=>$users_info]);
@@ -78,9 +81,17 @@ class PersonalController extends Controller
     }
 
      // 订单页显示
-    public function order()
+    public function order(Request $request)
     {
-    	return view('home.personal.order');
+        $uid = 1;
+
+        //查询购物车中数据
+        $data = Orders::where('uid',$uid)->get();
+        foreach($data as $k=>$v){
+            $gid = $v->gid;
+            $goods[$v->id] = Goods::where('id',$gid)->get();
+        }
+    	return view('home.personal.order',['data'=>$data,'goods'=>$goods]);
     }
 
      // 地址页显示
@@ -149,18 +160,16 @@ class PersonalController extends Controller
     {
         $id = $request->input('id');
         $address = Address::find($id);
-        // dd($address);
         return view('home.personal.upaddress',['address'=>$address]);
     }
 
     // 执行修改
     public function doupaddress(request $request,$id)
     {
-
         // 开启事务
-        DB::beginTransaction();
-
+         DB::beginTransaction();
          $address = Address::first();
+         dd($address);
          $address->uid = session('home_userinfo')->id;
          $address->aname = $request->input('aname');
          $address->aphone = $request->input('aphone');

@@ -49,6 +49,12 @@
         				</div>
         			</div>
                     <div class="mws-form-row">
+                        <label class="mws-form-label">商品描述</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="desc" class="small">
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
                         <label class="mws-form-label">商品图片</label>
                         <div class="mws-form-item">
                             <input type="file" name="pic">

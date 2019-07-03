@@ -20,6 +20,11 @@ class GoodsController extends Controller
 
     	$data = Goods::where('id',$id)->where('status',1)->get();
 
+      foreach($data as $k=>$v){
+        $c = $v->cid;
+        $cname = Cates::where('id',$c)->get();
+      }
+
         $datas = Goods::where('cid',$cid)->get();
         
         $cates_data = Cates::get();
@@ -29,7 +34,7 @@ class GoodsController extends Controller
         $hf_data = DB::table('replys')->orderby('ctime','desc')->get();
 
         //
-        return view('home.goods.goods_info',['data'=>$data,'datas'=>$datas,'cates_data'=>$cates_data,'hf_data'=>$hf_data]);
+        return view('home.goods.goods_info',['data'=>$data,'datas'=>$datas,'cates_data'=>$cates_data,'hf_data'=>$hf_data,'cname'=>$cname]);
     }
 
     // public function car(Request $request){

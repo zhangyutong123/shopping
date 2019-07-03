@@ -110,28 +110,13 @@
         <div class="pro_des">
         	<div class="des_name">
             	<p>{{ $v->gname }}</p>
-                “开业巨惠，北京专柜直供”，不光低价，“真”才靠谱！
+                {{ $v->desc }}
             </div>
             <div class="des_price">
             	本店价格：<b>{{ $v->price }}</b><br />
             </div>
             
-            <div class="des_choice">
-            	<span class="fl">型号选择：</span>
-                <ul>
-                	<li class="checked">30ml<div class="ch_img"></div></li>
-                    <li>50ml<div class="ch_img"></div></li>
-                    <li>100ml<div class="ch_img"></div></li>
-                </ul>
-            </div>
-            <div class="des_choice">
-            	<span class="fl">颜色选择：</span>
-                <ul>
-                	<li>红色<div class="ch_img"></div></li>
-                    <li class="checked">白色<div class="ch_img"></div></li>
-                    <li>黑色<div class="ch_img"></div></li>
-                </ul>
-            </div>
+
             <div class="des_share">
             	<div class="d_sh">
                 	分享
@@ -146,8 +131,7 @@
                 <div class="d_care"><a onclick="ShowDiv('MyDiv','fade')">关注商品</a></div>
             </div>
             <div class="des_join">
-                <form action="/home/car/car1" method="post">
-                    {{ csrf_field() }}
+                <form action="/home/cart/index" method="get">
                 	<div class="j_nums">
                         <input type="hidden" name="id" value="{{ $v->id }}">
                         <input type="hidden" name="cid" value="{{ $v->cid }}">
@@ -161,10 +145,6 @@
             </div>            
         </div>    
         
-        <div class="s_brand">
-        	<div class="s_brand_img"><img src="/homes/images/sbrand.jpg" width="188" height="132" /></div>
-            <div class="s_brand_c"><a href="#">进入品牌专区</a></div>
-        </div>    
         
         
     </div>
@@ -190,46 +170,6 @@
         </div>
         <div class="l_list">        	
             <div class="des_border">
-            	<div class="des_tit">
-                	<ul>
-                    	<li class="current">推荐搭配</li>
-                    </ul>
-                </div>
-                <div class="team_list">
-                	<div class="img"><a href="#"><img src="/homes/images/mat_1.jpg" width="160" height="140" /></a></div>
-                	<div class="name"><a href="#">倩碧补水组合套装8折促销</a></div>
-                    <div class="price">
-                    	<div class="checkbox"><input type="checkbox" name="zuhe" checked="checked" /></div>
-                    	<font>￥<span>768.00</span></font> &nbsp; 18R
-                    </div>
-                </div>
-                <div class="team_icon"><img src="/homes/images/jia_b.gif" /></div>
-                <div class="team_list">
-                	<div class="img"><a href="#"><img src="/homes/images/mat_2.jpg" width="160" height="140" /></a></div>
-                	<div class="name"><a href="#">香奈儿邂逅清新淡香水50ml</a></div>
-                    <div class="price">
-                    	<div class="checkbox"><input type="checkbox" name="zuhe" /></div>
-                    	<font>￥<span>749.00</span></font> &nbsp; 18R
-                    </div>
-                </div>
-                <div class="team_icon"><img src="/homes/images/jia_b.gif" /></div>
-                <div class="team_list">
-                	<div class="img"><a href="#"><img src="/homes/images/mat_3.jpg" width="160" height="140" /></a></div>
-                	<div class="name"><a href="#">香奈儿邂逅清新淡香水50ml</a></div>
-                    <div class="price">
-                    	<div class="checkbox"><input type="checkbox" name="zuhe" checked="checked" /></div>
-                    	<font>￥<span>749.00</span></font> &nbsp; 18R
-                    </div>
-                </div>
-                <div class="team_icon"><img src="/homes/images/equl.gif" /></div>
-                <div class="team_sum">
-                	套餐价：￥<span>1517</span><br />
-                    <input type="text" value="1" class="sum_ipt" /><br />
-                    <a href="#"><img src="/homes/images/z_buy.gif" /></a> 
-                </div>
-                
-            </div>
-            <div class="des_border">
                 <div class="des_tit">
                 	<ul>
                     	<li class="current"><a href="#p_attribute">商品属性</a></li>
@@ -241,37 +181,26 @@
                 	
                 	<table border="0" align="center" style="width:100%; font-family:'宋体'; margin:10px auto;" cellspacing="0" cellpadding="0">
                       <tr>
-                        <td>商品名称：迪奥香水</td>
-                        <td>商品编号：1546211</td>
-                        <td>品牌： 迪奥（Dior）</td>
-                        <td>上架时间：2015-09-06 09:19:09 </td>
-                      </tr>
-                      <tr>
-                        <td>商品毛重：160.00g</td>
-                        <td>商品产地：法国</td>
-                        <td>香调：果香调香型：淡香水/香露EDT</td>
-                        <td>&nbsp;</td>
-                      </tr>
-                      <tr>
-                        <td>容量：1ml-15ml </td>
-                        <td>类型：女士香水，Q版香水，组合套装</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        @foreach($data as $k=>$v)
+                        <td>商品名称：{{ $v->gname }}</td>
+                        @endforeach
+                        @foreach($cname as $k=>$v)
+                        <td>品牌： {{ $v->cname }}</td>
+                        @endforeach
                       </tr>
                     </table>                                               
                                             
                         
                 </div>
           	</div>  
-            
-            <div class="des_border" id="p_details">
+            <!-- <div class="des_border" id="p_details">
                 <div class="des_t">商品详情</div>
                 <div class="des_con">
-                	<table border="0" align="center" style="width:745px; font-size:14px; font-family:'宋体';" cellspacing="0" cellpadding="0">
+                    <table border="0" align="center" style="width:745px; font-size:14px; font-family:'宋体';" cellspacing="0" cellpadding="0">
                       <tr>
                         <td width="265"><img src="/homes/images/de1.jpg" width="206" height="412" /></td>
                         <td>
-                        	<b>迪奥真我香水(Q版)</b><br />
+                            <b>迪奥真我香水(Q版)</b><br />
                             【商品规格】：5ml<br />
                             【商品质地】：液体<br />
                             【商品日期】：与专柜同步更新<br />
@@ -288,11 +217,10 @@
                     <img src="/homes/images/de3.jpg" width="750" height="417" /><br /><br />
                     <img src="/homes/images/de4.jpg" width="750" height="409" /><br /><br />
                     <img src="/homes/images/de5.jpg" width="750" height="409" />
-					</p>
+                    </p>
                     
                 </div>
-          	</div>  
-            
+            </div> -->
             <div class="des_border" id="p_comment">
                 <div class="des_t">商品评论</div>
                 <form action="/home/goods/hfeate" method="post">
@@ -350,7 +278,7 @@
                                 
                 <table  border="0" class="jud_list" style=" margin-left: 100px; width:100%; margin-top:30px;" cellspacing="0" cellpadding="0">
                   <tr valign="top">
-                    <td width="160"><img src="" width="20" height="20" align="absmiddle" />&nbsp;{{ session('home_userinfo')->uname }}</td>
+                    <td width="160"><img src="" width="20" height="20" align="absmiddle" />&nbsp;123</td>
                     
                     <td>
                         {{$v->content}} <br />

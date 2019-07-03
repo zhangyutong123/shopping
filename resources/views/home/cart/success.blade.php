@@ -18,15 +18,22 @@
               </tr>
               <tr>
                 <td style="font-size:14px; font-family:'宋体'; padding:10px 0 20px 0; border-bottom:1px solid #b6b6b6;">
-                  您选定的配送方式为: <font color="#ff4e00">货到付款</font>； &nbsp; &nbsp;
-                  您的应付款金额为: <font color="#ff4e00">￥888.00</font>
+                  您的应付款金额为: <font color="#ff4e00">￥{{ $all }}</font>
                 </td>
+              </tr>
+              <tr>
+                @foreach($datas_a as $k=>$v)
+                <td style="font-size:14px; font-family:'宋体'; padding:10px 0 20px 0; border-bottom:1px solid #b6b6b6;">
+                  收件人:{{ $v->aname }}
+                  收件人地址:{{ $v->province }}
+                  收件人电话:{{ $v->aphone }}
+                </td>
+                @endforeach
               </tr>
               <tr>
                 <td style="padding:20px 0 30px 0; font-family:'宋体';">
                   推荐支付:支付宝网站(www.alipay.com) 是国内先进的网上支付平台。<br>
                     支付宝收款接口：在线即可开通，零预付，免年费，单笔阶梯费率，无流量限制。<br>
-                    <a href="#" style="color:#ff4e00;">立即在线申请</a>
                 </td>
               </tr>
               <tr>

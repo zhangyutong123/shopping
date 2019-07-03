@@ -50,6 +50,6 @@ class LoginController extends Controller
     {
       session(['home_login'=>null]);
       session(['home_userinfo'=>null]);
-      return  back();
+      return  redirect('/');
     }
 }

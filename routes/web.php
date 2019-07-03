@@ -93,8 +93,6 @@ Route::group((['prefix'=>'home']),function(){
 	Route::resource('/cates','Home\CatesController');
 	//商品详情
 	Route::get('/goods','Home\GoodsController@index');
-	//购物车路由
-	Route::get('/cars','Home\GoodsController@car');
 	// 前台 个人中心 用户中心
 	Route::get('personal/index','Home\PersonalController@index');
 	// 前台 个人中心 修改信息
@@ -118,17 +116,27 @@ Route::group((['prefix'=>'home']),function(){
 	// 前台 个人中心 收货地址修改
 	Route::get('personal/upaddress','Home\PersonalController@upaddress');
 	// 前台 个人中心 收货地址执行修改
-	Route::post('personal/doupaddress','Home\PersonalController@doupaddress');
-	// 前台 购物车页面
-	Route::resource('/cart','Home\CartController');
+	Route::post('personal/doupaddress/','Home\PersonalController@doupaddress');
+	// 前台 购物车写入
+	Route::get('cart/index','Home\CartController@index');
+	//前台 购物车 页面
+	Route::get('cart','Home\CartController@cart');
+	// 前台 清空购物车页面
+	Route::get('cart/clear','Home\CartController@clear');
 	// 前台 确认订单页
-	Route::get('cart/confirm','Home\CartController@confirm');	
-	//购物车中增加数量路由
-	Route::post('car/car1','Home\CartController@car1');
-	//清空购物车
-	Route::get('car/clear','Home\CartController@clear');
+	Route::get('cart/confirm','Home\CartController@confirm');
+	// 前台 购物车商品 数量增加
+	Route::get('cart/up','Home\CartController@up');
+	// 前台 购物车商品 数量减少
+	Route::get('cart/down','Home\CartController@down');
+	// 前台 购物车商品 删除一条
+	Route::get('cart/delete','Home\CartController@delete');
 	//购物车提交订单
 	Route::get('car/confirm','Home\CartController@confirm');
+	//购物车确认订单  压入数据库
+	Route::get('cart/next','Home\CartController@next');
+	//购物车确认订单  最终页面
+	Route::get('cart/last','Home\CartController@last');
 	//前台显示回复
    Route::get('goods/hfdex','Home\GoodsController@hfdex');
    //前台自行添加回复

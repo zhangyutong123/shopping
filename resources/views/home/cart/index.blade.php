@@ -93,40 +93,28 @@
     <div class="content mar_20">
         <table border="0" class="car_tab" style="width:1200px; margin-bottom:50px;" cellspacing="0" cellpadding="0">
           <tr>
-            <td class="car_th" width="20"></td>
             <td class="car_th" width="490">商品名称</td>
             <td class="car_th" width="140">单价</td>
             <td class="car_th" width="150">购买数量</td>
             <td class="car_th" width="130">共计</td>
             <td class="car_th" width="150">操作</td>
           </tr>
-          @foreach($data as $k=>$v)
-          @foreach($datas_c as $kk=>$vv)
+          @foreach($datas_c as $k=>$v)
           <tr>
-            <td>
-              <input type="checkbox" name="clear"/>
-            </td>
             <td>
                 <div class="c_s_img"><img src="/uploads/{{ $v->pic }}" width="73" height="73" /></div>
                 {{ $v->pname }}
             </td>
             <td align="center">{{ $v->price }}</td>
-            <!-- <td align="center">
-                <div class="c_num">
-                    <input type="button" value="" onclick="jianUpdate1(jq(this));" class="car_btn_1" />
-                    <input type="text" value="{{ $vv->num }}" name="" class="car_ipt" />  
-                    <input type="button" value="" onclick="addUpdate1(jq(this));" class="car_btn_2" />
-                </div>
-            </td> -->
+
             <td align="center">
-              <a href="/home/cart/{{ $v->id }}/edit">-</a>
-                {{ $vv->num }}
-              <a href="/home/cart/{{ $v->id }}">+</a>
+              <a class="down">-</a>
+                {{ $v->num }}
+              <a class="up">+</a>
             </td>
-            <td align="center" style="color:#ff4e00;">{{ $v->price * $vv->num }}</td>
-            <td align="center"><a href="/home/cart/create?id={{ $v->id }}">删除</a>&nbsp; &nbsp;<a href="#">加入收藏</a></td>
+            <td align="center" style="color:#ff4e00;">{{ $v->price * $v->num }}</td>
+            <td align="center"><a href="/home/cart/delete?id={{ $v->id }}&uid={{ $v->uid }}">删除</a>&nbsp; &nbsp;<a href="#">加入收藏</a></td>
           </tr>
-          @endforeach
           @endforeach
 
 
@@ -151,14 +139,13 @@
           </tr> -->
           <tr height="70">
             <td colspan="6" style="font-family:'Microsoft YaHei'; border-bottom:0;">
-                <label class="r_txt"><a href="/home/car/clear?uid={{ $uid }}">清空购物车</a></label>
-                <label class="r_txt"><a href="">全选</a></label>
+                <label class="r_txt"><a href="/home/cart/clear?uid={{ $uid }}">清空购物车</a></label>
                 <span class="fr">商品总价：<b style="font-size:22px; color:#ff4e00;">￥{{ $all }}</b></span>
             </td>
           </tr>
           <tr valign="top" height="150">
             <td colspan="6" align="right">
-                <a href="/"><img src="/homes/images/buy1.gif" /></a>&nbsp; &nbsp; <a href="/home/car/confirm?uid={{ $uid }}"><img src="/homes/images/buy2.gif" /></a>
+                <a href="/"><img src="/homes/images/buy1.gif" /></a>&nbsp; &nbsp; <a href="/home/car/confirm?uid={{ $uid }}&id={{ $id }}"><img src="/homes/images/buy2.gif" /></a>
             </td>
           </tr>
         </table>
@@ -203,3 +190,32 @@
 
 @include('home.public.footer')
 <!-- footer END -->
+<script type="text/javascript">
+    $('.up').click(function(){
+        $.get('/home/cart/up?id={{ $v->id }}',function($a){
+            alert($a);
+            return false;
+        });
+    });
+    
+
+    $('.down').click(function(){
+        $.get('/home/cart/down?id={{ $v->id }}',function($a){
+            alert($a);
+            return false;
+        });
+    });
+    
+
+    $('.as').click(function(){
+      $('.choose').attr('checked','checked')
+
+      //阻止默认行为
+      return false;
+
+    });
+
+    $('.as').attr(function(){
+        
+      })
+</script>

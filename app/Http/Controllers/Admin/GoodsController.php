@@ -64,6 +64,7 @@ class GoodsController extends Controller
         $data['status'] = $request->input('status','');
         $data['brand'] = $request->input('brand','');
         $data['cid'] = $request->input('cid','');
+        $data['desc'] = $request->input('desc','');
 
         //dd($data);
         
